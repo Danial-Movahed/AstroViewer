@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 722925871}
   - component: {fileID: 722925870}
   - component: {fileID: 722925873}
+  - component: {fileID: 722925874}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -4948,6 +4949,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0186650fbfcb8a1bbb12939d165c5f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &722925874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722925869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd5d04ac4293356b4b51e4fbe386ac2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &907292807
 GameObject:
   m_ObjectHideFlags: 0
@@ -4993,7 +5006,6 @@ GameObject:
   - component: {fileID: 959308591}
   - component: {fileID: 959308589}
   - component: {fileID: 959308590}
-  - component: {fileID: 959308588}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5001,18 +5013,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &959308588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 959308587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aebfb4b86b2e54606894da54f755db2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!81 &959308589
 AudioListener:
   m_ObjectHideFlags: 0
@@ -5028,7 +5028,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 959308587}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a2a9c34df4095f47b9ca8f975175f5b, type: 3}
   m_Name: 
@@ -5121,7 +5121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1119015858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5245,8 +5245,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   longitude: 51.3347
   latitude: 35.7219
-  hour: 13
-  minutes: 49
+  hour: 14
+  minutes: 48
   timeSpeed: 1
   frameSteps: 1
 --- !u!108 &2142808100
