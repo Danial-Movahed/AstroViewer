@@ -22,7 +22,7 @@ namespace Entropedia
                 Debug.Log(d);
                 if(sun) sun.SetDate(d);
             }
-            catch(System.ArgumentOutOfRangeException e){
+            catch(System.ArgumentOutOfRangeException /*e*/){
                 Debug.LogWarning("bad date");
             }
         }
