@@ -5,9 +5,6 @@ using UnityEngine;
 
 namespace Entropedia
 {
-
-    [RequireComponent(typeof(Light))]
-    [ExecuteInEditMode]
     public class Sun : MonoBehaviour
     {
         [SerializeField]
@@ -25,7 +22,6 @@ namespace Entropedia
         public int minutes;
 
         DateTime time;
-        Light light;
 
         [SerializeField]
         float timeSpeed = 1;
@@ -36,6 +32,54 @@ namespace Entropedia
 
         [SerializeField]
         DateTime date;
+
+        private const double Deg2Rad = Math.PI / 180.0;
+        private const double Rad2Deg = 180.0 / Math.PI;
+
+        public struct star
+        {
+            public float ra;
+            public float dec;
+            public float mag;
+            public float x;
+            public float y;
+            public float z;
+        }
+        public static int maxStars = 119613;
+        public star[] stardb = new star[maxStars];
+        private ParticleSystem.Particle[] points = new ParticleSystem.Particle[maxStars];
+        public GameObject cube;
+        public ParticleSystem particleSystem;
+        private void setdb()
+        {
+            TextAsset theList = Resources.Load<TextAsset>("hygdata_v3");
+            string[] linesFromfile = theList.text.Split("\n");
+            for(int i=0; i<maxStars; i++)
+            {
+                string[] values = linesFromfile[i].Split(',');
+                stardb[i].ra = float.Parse(values[0]);
+                stardb[i].dec = float.Parse(values[1]);
+                stardb[i].mag = float.Parse(values[2]);
+                stardb[i].x = float.Parse(values[3]);
+                stardb[i].z = float.Parse(values[4]);
+                stardb[i].y = float.Parse(values[5]);
+            }
+        }
+
+
+        private IEnumerator plotStar()
+        {
+            for(int i=0; i<maxStars; i++)
+            {
+                SetPosition(stardb[i].ra,stardb[i].dec);
+                // gameObject.transform.rotation = Quaternion.Euler((float)(gameObject.transform.rotation.eulerAngles.x-43.667),(float)(gameObject.transform.rotation.eulerAngles.y-17.432),0);
+                points[i].position = new Vector3(cube.transform.position.x,cube.transform.position.y,cube.transform.position.z);
+                points[i].startSize=0.2f;
+                points[i].startColor = Color.white * (1.0f - ((stardb[i].mag + 0.5f) / 1000));
+            }
+            particleSystem.SetParticles(points, points.Length);
+            yield return 0; 
+        }
 
         public void SetTime(int hour, int minutes) {
             this.hour = hour;
@@ -63,14 +107,17 @@ namespace Entropedia
             timeSpeed = speed;
         }
 
-        private void Awake()
+        private void Start()
         {
-
-            light = GetComponent<Light>();
+            setdb();
             time = DateTime.Now;
             hour = time.Hour;
             minutes = time.Minute;
             date = time.Date;
+            IEnumerator coroutine = plotStar();
+            StartCoroutine(coroutine);
+            // SetPosition(2.52975*Deg2Rad,89.264109);
+            // Debug.Log(cube.transform.position);
         }
 
         private void OnValidate()
@@ -80,29 +127,25 @@ namespace Entropedia
             Debug.Log(time);
         }
 
-        private void Update()
+        // private void Update()
+        // {
+        //     time = time.AddSeconds(timeSpeed * Time.deltaTime);
+        //     if (frameStep==0) {
+        //         SetPosition();
+        //     }
+        //     frameStep = (frameStep + 1) % frameSteps;
+        // }
+
+        void SetPosition(double rightAscension, double declination)
         {
-            time = time.AddSeconds(timeSpeed * Time.deltaTime);
-            if (frameStep==0) {
-                SetPosition();
-            }
-            frameStep = (frameStep + 1) % frameSteps;
-
-
-        }
-
-        void SetPosition()
-        {
-
             Vector3 angles = new Vector3();
             double alt;
             double azi;
-            SunPosition.CalculateSunPosition(time, (double)latitude, (double)longitude, out azi, out alt);
+            SunPosition.CalculateSunPosition(time, (double)latitude, (double)longitude, rightAscension, declination, out azi, out alt);
             angles.x = (float)alt * Mathf.Rad2Deg;
             angles.y = (float)azi * Mathf.Rad2Deg;
-            //UnityEngine.Debug.Log(angles);
+            Debug.Log(angles);
             transform.localRotation = Quaternion.Euler(angles);
-            light.intensity = Mathf.InverseLerp(-12, 0, angles.x);
         }
 
         
@@ -132,7 +175,7 @@ namespace Entropedia
          * \param longitude Longitude expressed in decimal degrees. 
          */
         public static void CalculateSunPosition(
-            DateTime dateTime, double latitude, double longitude, out double outAzimuth, out double outAltitude)
+            DateTime dateTime, double latitude, double longitude, double rightAscension, double declination ,out double outAzimuth, out double outAltitude)
         {
             // Convert to UTC  
             dateTime = dateTime.ToUniversalTime();
@@ -173,13 +216,13 @@ namespace Entropedia
 
             double obliquity = (23.439 - 0.013 * julianCenturies) * Deg2Rad;
 
-            // Right Ascension  
-            double rightAscension = Math.Atan2(
-                Math.Cos(obliquity) * Math.Sin(elipticalLongitude),
-                Math.Cos(elipticalLongitude));
+            // // Right Ascension  
+            // double rightAscension = Math.Atan2(
+            //     Math.Cos(obliquity) * Math.Sin(elipticalLongitude),
+            //     Math.Cos(elipticalLongitude));
 
-            double declination = Math.Asin(
-                Math.Sin(rightAscension) * Math.Sin(obliquity));
+            // double declination = Math.Asin(
+            //     Math.Sin(rightAscension) * Math.Sin(obliquity));
 
             // Horizontal Coordinates  
             double hourAngle = CorrectAngle(siderealTime * Deg2Rad) - rightAscension;
