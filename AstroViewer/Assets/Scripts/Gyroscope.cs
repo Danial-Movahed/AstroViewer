@@ -3,7 +3,8 @@ public class Gyroscope : MonoBehaviour
 {
     public Vector3 sensorAngleInHeadset;
     public Camera c;
-    Quaternion _neutralizer = Quaternion.identity;
+    // Quaternion _neutralizer = Quaternion.identity;
+    Quaternion _neutralizer = Quaternion.Euler(90,180,-180);
     Quaternion GetUprightAttitude() {
         return Input.gyro.attitude * Quaternion.Euler(sensorAngleInHeadset);
     }
@@ -11,8 +12,6 @@ public class Gyroscope : MonoBehaviour
     {
         Input.gyro.enabled = true;
     }
-
-    // Each frame, rotate our video sphere according to the corrected orientation.
     void Update() {
         var corrected = _neutralizer * GetUprightAttitude();
         c.transform.rotation = corrected;
