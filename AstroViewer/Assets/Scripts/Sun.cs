@@ -45,7 +45,7 @@ namespace Entropedia
             public float y;
             public float z;
         }
-        public static int maxStars = 119614;
+        public static int maxStars = 1;
         public star[] stardb = new star[maxStars];
         private ParticleSystem.Particle[] points = new ParticleSystem.Particle[maxStars];
         public GameObject cube,cubeController;

@@ -4927,14 +4927,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722925869}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0.10731896, y: 0.16598512, z: -0.5322428, w: 0.82319456}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2142808103}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 22.8, z: -65.77}
 --- !u!1 &907292807
 GameObject:
   m_ObjectHideFlags: 0
@@ -5046,7 +5046,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 3000
-  field of view: 5
+  field of view: 45
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -5071,7 +5071,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 959308587}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5289,7 +5289,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928288016}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -50}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5379,8 +5379,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   longitude: 51.3347
   latitude: 35.7219
-  hour: 20
-  minutes: 21
+  hour: 21
+  minutes: 13
   timeSpeed: 1
   frameSteps: 1
   cube: {fileID: 1928288016}
