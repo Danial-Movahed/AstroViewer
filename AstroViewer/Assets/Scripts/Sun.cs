@@ -45,10 +45,10 @@ namespace Entropedia
             public float y;
             public float z;
         }
-        public static int maxStars = 119613;
+        public static int maxStars = 119614;
         public star[] stardb = new star[maxStars];
         private ParticleSystem.Particle[] points = new ParticleSystem.Particle[maxStars];
-        public GameObject cube;
+        public GameObject cube,cubeController;
         public ParticleSystem particleSystem;
         private void setdb()
         {
@@ -73,7 +73,7 @@ namespace Entropedia
             {
                 SetPosition(stardb[i].ra,stardb[i].dec);
                 // gameObject.transform.rotation = Quaternion.Euler((float)(gameObject.transform.rotation.eulerAngles.x-43.667),(float)(gameObject.transform.rotation.eulerAngles.y-17.432),0);
-                points[i].position = new Vector3(cube.transform.position.x,cube.transform.position.y,cube.transform.position.z);
+                points[i].position = cube.transform.position;
                 points[i].startSize=0.2f;
                 points[i].startColor = Color.white * (1.0f - ((stardb[i].mag + 0.5f) / 1000));
             }
@@ -114,8 +114,7 @@ namespace Entropedia
             hour = time.Hour;
             minutes = time.Minute;
             date = time.Date;
-            IEnumerator coroutine = plotStar();
-            StartCoroutine(coroutine);
+            StartCoroutine("plotStar");
             // SetPosition(2.52975*Deg2Rad,89.264109);
             // Debug.Log(cube.transform.position);
         }
@@ -144,8 +143,7 @@ namespace Entropedia
             SunPosition.CalculateSunPosition(time, (double)latitude, (double)longitude, rightAscension, declination, out azi, out alt);
             angles.x = (float)alt * Mathf.Rad2Deg;
             angles.y = (float)azi * Mathf.Rad2Deg;
-            Debug.Log(angles);
-            transform.localRotation = Quaternion.Euler(angles);
+            cubeController.transform.rotation = Quaternion.Euler(angles);
         }
 
         

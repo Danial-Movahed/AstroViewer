@@ -1,20 +1,20 @@
 using UnityEngine;
 public class Gyroscope : MonoBehaviour
 {
-    private void Start()
-    {
-        if (SystemInfo.supportsGyroscope)
-        {
-            Input.gyro.enabled = true;
-        }
+    public Vector3 sensorAngleInHeadset;
+    public Camera c;
+    Quaternion _neutralizer = Quaternion.identity;
+    Quaternion GetUprightAttitude() {
+        return Input.gyro.attitude * Quaternion.Euler(sensorAngleInHeadset);
     }
-    void Update()
+    void Start()
     {
-        if (SystemInfo.supportsGyroscope)
-            transform.rotation = GyroToUnity(Input.gyro.attitude);
+        Input.gyro.enabled = true;
     }
-    private Quaternion GyroToUnity (Quaternion q)
-    {
-        return new Quaternion(q.x, q.y, -q.z, -q.w);
+
+    // Each frame, rotate our video sphere according to the corrected orientation.
+    void Update() {
+        var corrected = _neutralizer * GetUprightAttitude();
+        c.transform.rotation = corrected;
     }
 }
