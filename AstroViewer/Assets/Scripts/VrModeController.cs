@@ -79,6 +79,7 @@ public class VrModeController : MonoBehaviour
         {
             Api.ScanDeviceParams();
         }
+        // XRDevice.fovZoomFactor=4f;
     }
 
     /// <summary>

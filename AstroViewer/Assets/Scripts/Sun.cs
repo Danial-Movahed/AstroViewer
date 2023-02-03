@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace Entropedia
 {
@@ -33,36 +34,30 @@ namespace Entropedia
         [SerializeField]
         DateTime date;
 
-        private const double Deg2Rad = Math.PI / 180.0;
-        private const double Rad2Deg = 180.0 / Math.PI;
-
         public struct star
         {
+            public string name;
             public float ra;
             public float dec;
             public float mag;
-            public float x;
-            public float y;
-            public float z;
         }
-        public static int maxStars = 119614;
+        public static int maxStars = 9998;
         public star[] stardb = new star[maxStars];
         private ParticleSystem.Particle[] points = new ParticleSystem.Particle[maxStars];
         public GameObject cube,cubeController;
-        public ParticleSystem particleSystem;
+        public ParticleSystem PS;
+        public GameObject cam;
         private void setdb()
         {
-            TextAsset theList = Resources.Load<TextAsset>("hygdata_v3");
+            TextAsset theList = Resources.Load<TextAsset>("dbnew");
             string[] linesFromfile = theList.text.Split("\n");
             for(int i=0; i<maxStars; i++)
             {
                 string[] values = linesFromfile[i].Split(',');
-                stardb[i].ra = float.Parse(values[0]);
-                stardb[i].dec = float.Parse(values[1]);
-                stardb[i].mag = float.Parse(values[2]);
-                stardb[i].x = float.Parse(values[3]);
-                stardb[i].z = float.Parse(values[4]);
-                stardb[i].y = float.Parse(values[5]);
+                stardb[i].name = values[0];
+                stardb[i].ra = float.Parse(values[1]);
+                stardb[i].dec = float.Parse(values[2]);
+                stardb[i].mag = float.Parse(values[3]);
             }
         }
 
@@ -71,15 +66,26 @@ namespace Entropedia
         {
             for(int i=0; i<maxStars; i++)
             {
-                SetPosition(stardb[i].ra,stardb[i].dec);
-                // gameObject.transform.rotation = Quaternion.Euler((float)(gameObject.transform.rotation.eulerAngles.x-43.667),(float)(gameObject.transform.rotation.eulerAngles.y-17.432),0);
+                var angle=SetPosition(stardb[i].ra,stardb[i].dec);
                 points[i].position = cube.transform.position;
-                points[i].startSize=0.2f;
-                points[i].startColor = Color.white * (1.0f - ((stardb[i].mag + 0.5f) / 1000));
+                points[i].startSize=0.03f;
+                points[i].startColor = Color.white * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7),3));
+                if(stardb[i].name != "")
+                {
+                    angle.y+=-90;
+                    cubeController.transform.rotation=Quaternion.Euler(angle);
+                    GameObject collider = Instantiate(Resources.Load("StarCollider"),cube.transform.position,Quaternion.identity) as GameObject;
+                    collider.name = "Collider "+stardb[i].name;
+                    angle.x-=1;
+                    cubeController.transform.rotation=Quaternion.Euler(angle);
+                    GameObject nameText = Instantiate(Resources.Load("StarText"),cube.transform.position,Quaternion.LookRotation( cube.transform.position - cam.transform.position )) as GameObject;
+                    nameText.GetComponent<TextMeshPro>().text=stardb[i].name;
+                    nameText.name = stardb[i].name;
+                }
             }
-            particleSystem.SetParticles(points, points.Length);
+            PS.SetParticles(points, points.Length);
             yield return 0; 
-        }
+        }   
 
         public void SetTime(int hour, int minutes) {
             this.hour = hour;
@@ -115,8 +121,6 @@ namespace Entropedia
             minutes = time.Minute;
             date = time.Date;
             StartCoroutine("plotStar");
-            // SetPosition(2.52975*Deg2Rad,89.264109);
-            // Debug.Log(cube.transform.position);
         }
 
         private void OnValidate()
@@ -135,7 +139,7 @@ namespace Entropedia
         //     frameStep = (frameStep + 1) % frameSteps;
         // }
 
-        void SetPosition(double rightAscension, double declination)
+        Vector3 SetPosition(double rightAscension, double declination)
         {
             Vector3 angles = new Vector3();
             double alt;
@@ -143,7 +147,10 @@ namespace Entropedia
             SunPosition.CalculateSunPosition(time, (double)latitude, (double)longitude, rightAscension, declination, out azi, out alt);
             angles.x = (float)alt * Mathf.Rad2Deg;
             angles.y = (float)azi * Mathf.Rad2Deg;
+            // Debug.Log("Azimuth: "+(float)azi * Mathf.Rad2Deg);
+            // Debug.Log("Altitude: "+(float)alt * Mathf.Rad2Deg);
             cubeController.transform.rotation = Quaternion.Euler(angles);
+            return angles;
         }
 
         
