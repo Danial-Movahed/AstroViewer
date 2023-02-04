@@ -5,7 +5,7 @@ public class Gyroscope : MonoBehaviour
 {
     private Quaternion sensorAngleInHeadset = Quaternion.Euler(0,0,180);
     public Camera c;
-    private Quaternion _neutralizer = Quaternion.Euler(79,0,0);
+    private Quaternion _neutralizer = Quaternion.Euler(90,0,0);
     public GameObject compassImage;
     Quaternion GetUprightAttitude()
     {
@@ -18,7 +18,7 @@ public class Gyroscope : MonoBehaviour
     void Update()
     {
         var corrected = _neutralizer * GetUprightAttitude();
-        // if(!XRGeneralSettings.Instance.Manager.isInitializationComplete)
+        if(!XRGeneralSettings.Instance.Manager.isInitializationComplete)
             compassImage.transform.localRotation = Quaternion.Euler(0,0,corrected.eulerAngles.y);
         c.transform.rotation = corrected;
     }

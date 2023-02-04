@@ -41,7 +41,7 @@ namespace Entropedia
             public float dec;
             public float mag;
         }
-        public static int maxStars = 1;
+        public static int maxStars = 9998;
         public star[] stardb = new star[maxStars];
         private ParticleSystem.Particle[] points = new ParticleSystem.Particle[maxStars];
         public GameObject cube,cubeController;
@@ -55,7 +55,7 @@ namespace Entropedia
             {
                 string[] values = linesFromfile[i].Split(',');
                 stardb[i].name = values[0];
-                stardb[i].ra = float.Parse(values[1]) * Mathf.Deg2Rad;
+                stardb[i].ra = float.Parse(values[1]) * 15 * Mathf.Deg2Rad;
                 stardb[i].dec = float.Parse(values[2]) * Mathf.Deg2Rad;
                 stardb[i].mag = float.Parse(values[3]);
             }
@@ -70,18 +70,17 @@ namespace Entropedia
                 points[i].position = cube.transform.position;
                 points[i].startSize=0.03f;
                 points[i].startColor = Color.white * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7),3));
-                // if(stardb[i].name != "")
-                // {
-                //     angle.y+=-90;
-                //     cubeController.transform.rotation=Quaternion.Euler(angle);
-                //     GameObject collider = Instantiate(Resources.Load("StarCollider"),cube.transform.position,Quaternion.identity) as GameObject;
-                //     collider.name = "Collider "+stardb[i].name;
-                //     angle.x-=1;
-                //     cubeController.transform.rotation=Quaternion.Euler(angle);
-                //     GameObject nameText = Instantiate(Resources.Load("StarText"),cube.transform.position,Quaternion.LookRotation( cube.transform.position - cam.transform.position )) as GameObject;
-                //     nameText.GetComponent<TextMeshPro>().text=stardb[i].name;
-                //     nameText.name = stardb[i].name;
-                // }
+                if(stardb[i].name != "")
+                {
+                    cubeController.transform.rotation=Quaternion.Euler(angle);
+                    GameObject collider = Instantiate(Resources.Load("StarCollider"),cube.transform.position,Quaternion.identity) as GameObject;
+                    collider.name = "Collider "+stardb[i].name;
+                    angle.x-=1;
+                    cubeController.transform.rotation=Quaternion.Euler(angle);
+                    GameObject nameText = Instantiate(Resources.Load("StarText"),cube.transform.position,Quaternion.LookRotation( cube.transform.position - cam.transform.position )) as GameObject;
+                    nameText.GetComponent<TextMeshPro>().text=stardb[i].name;
+                    nameText.name = stardb[i].name;
+                }
             }
             PS.SetParticles(points, points.Length);
             yield return 0; 
