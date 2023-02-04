@@ -5344,7 +5344,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357399605}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd5d04ac4293356b4b51e4fbe386ac2e, type: 3}
   m_Name: 
@@ -5575,8 +5575,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   longitude: 51.3347
   latitude: 35.7219
-  hour: 15
-  minutes: 40
+  hour: 6
+  minutes: 37
   timeSpeed: 1
   frameSteps: 1
   cube: {fileID: 1928288016}
