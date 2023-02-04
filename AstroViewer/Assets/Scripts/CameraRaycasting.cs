@@ -1,6 +1,9 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class CameraRaycasting : MonoBehaviour
 {
@@ -10,22 +13,45 @@ public class CameraRaycasting : MonoBehaviour
         
     }
 
-    void FixedUpdate()
+    public float lockTime = 3.0f; 
+    private bool locking = false;
+    private float timestamp = 0.1f;
+    private bool isPollingForRaycast = true;
+    private RaycastHit hit;
+    public GameObject ui;
+    public GameObject starName;
+    public Image progress;
+    
+    void ShowStarDescUI(string name)
     {
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 2000, Color.yellow);
-        if(Input.GetKey(KeyCode.Space))
+        ui.SetActive(true);
+        starName.GetComponent<TextMeshProUGUI>().text = name;
+    }
+
+    void Update()
+    {
+        if(isPollingForRaycast)
         {
-            RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
             {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-                Debug.Log("Did Hit");
+                if (!locking)
+                {
+                    locking = true;
+                    timestamp = Time.time + lockTime;
+                }
             }
             else
             {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-                Debug.Log("Did not Hit");
+                locking = false;
+            }
+            if (locking && Time.time >= timestamp)
+            {
+                isPollingForRaycast = false;
+                locking = false;
+                ShowStarDescUI(hit.collider.name);
             }
         }
+        // Debug.Log(Convert.ToInt32(locking) * (Time.time - timestamp + lockTime) / lockTime);
+        progress.fillAmount = Convert.ToInt32(locking) * (Time.time - timestamp + lockTime) / lockTime;
     }
 }

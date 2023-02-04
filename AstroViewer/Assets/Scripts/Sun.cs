@@ -44,7 +44,7 @@ namespace Entropedia
             public string hipID;
         }
         public static int maxStars = 9998;
-        public star[] stardb = new star[maxStars];
+        public star[] stardb = new star[119613];
         public string[] constellations = new string[86];
         private ParticleSystem.Particle[] points = new ParticleSystem.Particle[maxStars];
         public GameObject cube,cubeController;
@@ -54,7 +54,7 @@ namespace Entropedia
         {
             TextAsset theList = Resources.Load<TextAsset>("StarDatabase");
             string[] linesFromfile = theList.text.Split("\n");
-            for(int i=0; i<maxStars; i++)
+            for(int i=0; i<linesFromfile.Length-1; i++)
             {
                 string[] values = linesFromfile[i].Split(',');
                 stardb[i].name = values[0];
@@ -106,12 +106,12 @@ namespace Entropedia
                 {
                     cubeController.transform.rotation=Quaternion.Euler(angle);
                     GameObject collider = Instantiate(Resources.Load("StarCollider"),cube.transform.position,Quaternion.identity) as GameObject;
-                    collider.name = "Collider "+stardb[i].name;
+                    collider.name = stardb[i].name;
                     angle.x-=1;
                     cubeController.transform.rotation=Quaternion.Euler(angle);
                     GameObject nameText = Instantiate(Resources.Load("StarText"),cube.transform.position,Quaternion.LookRotation( cube.transform.position - cam.transform.position )) as GameObject;
                     nameText.GetComponent<TextMeshPro>().text=stardb[i].name;
-                    nameText.name = stardb[i].name;
+                    nameText.name = "Name "+stardb[i].name;
                 }
             }
             plotConstellations();

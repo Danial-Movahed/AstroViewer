@@ -18,7 +18,7 @@ namespace Entropedia
         private void OnValidate()
         {
             try{
-                DateTime d = new DateTime(year,month,day,DateTime.Now.Hour,DateTime.Now.Minute,0);
+                DateTime d = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day,DateTime.Now.Hour,DateTime.Now.Minute,0);
                 Debug.Log(d);
                 if(sun) sun.SetDate(d);
             }
