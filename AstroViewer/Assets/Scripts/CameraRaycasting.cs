@@ -7,24 +7,25 @@ using TMPro;
 
 public class CameraRaycasting : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public float lockTime = 3.0f; 
     private bool locking = false;
     private float timestamp = 0.1f;
     private bool isPollingForRaycast = true;
     private RaycastHit hit;
-    public GameObject ui;
+    public GameObject DescUI, CamCanvas, DescCanvas;
     public GameObject starName;
     public Image progress;
     
+    void Start()
+    {
+        DescCanvas.GetComponent<Canvas>().transform.localScale = CamCanvas.GetComponent<Canvas>().transform.localScale;
+    }
+
     void ShowStarDescUI(string name)
     {
-        ui.SetActive(true);
+        DescCanvas.GetComponent<Canvas>().transform.rotation = CamCanvas.GetComponent<Canvas>().transform.rotation;
+        DescCanvas.GetComponent<Canvas>().transform.position = CamCanvas.GetComponent<Canvas>().transform.position;
+        DescUI.SetActive(true);
         starName.GetComponent<TextMeshProUGUI>().text = name;
     }
 
