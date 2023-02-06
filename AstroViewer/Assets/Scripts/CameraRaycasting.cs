@@ -13,7 +13,7 @@ public class CameraRaycasting : MonoBehaviour
     private bool isPollingForRaycast = true;
     private RaycastHit hit;
     public GameObject DescUI, CamCanvas, DescCanvas;
-    public GameObject starName;
+    public GameObject StarName,StarType,TypeImage,StarMath,StarDesc,StarImage;
     public Image progress;
     
     void Start()
@@ -26,7 +26,15 @@ public class CameraRaycasting : MonoBehaviour
         DescCanvas.GetComponent<Canvas>().transform.rotation = CamCanvas.GetComponent<Canvas>().transform.rotation;
         DescCanvas.GetComponent<Canvas>().transform.position = CamCanvas.GetComponent<Canvas>().transform.position;
         DescUI.SetActive(true);
-        starName.GetComponent<TextMeshProUGUI>().text = name;
+        // SHOW EVERYTHING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        TextAsset File = Resources.Load<TextAsset>("StarDesc/"+name);
+        string[] linesFromfile = File.text.Split("\n");
+        StarName.GetComponent<TextMeshProUGUI>().text = linesFromfile[0];
+        StarType.GetComponent<TextMeshProUGUI>().text = linesFromfile[1];
+        TypeImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("StarDesc/"+name+"Type");
+        StarMath.GetComponent<TextMeshProUGUI>().text = linesFromfile[2];
+        StarDesc.GetComponent<TextMeshProUGUI>().text = linesFromfile[3];
+        StarImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("StarDesc/"+name);
     }
 
     void Update()
