@@ -18,7 +18,8 @@ public class DescUILoader : MonoBehaviour
         canv.transform.GetChild(0).gameObject.SetActive(true);
         canv.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = linesFromfile[0];
         canv.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = linesFromfile[1];
-        canv.transform.GetChild(0).GetChild(3).GetComponent<Image>().sprite = Resources.Load<Sprite>("StarDesc/"+name+"Type");
+        Sprite aaa = Resources.Load<Sprite>("StarDesc/"+name+"Type");
+        canv.transform.GetChild(0).GetChild(3).GetComponent<Image>().sprite = aaa;
         canv.transform.GetChild(0).GetChild(6).GetComponent<TextMeshProUGUI>().text = linesFromfile[2];
         canv.transform.GetChild(0).GetChild(7).GetComponent<TextMeshProUGUI>().text = linesFromfile[3];
         canv.transform.GetChild(0).GetChild(8).GetComponent<Image>().sprite = Resources.Load<Sprite>("StarDesc/"+name);
