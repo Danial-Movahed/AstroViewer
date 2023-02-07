@@ -22,8 +22,6 @@ public class Gyroscope : MonoBehaviour
         {
             if(!XRGeneralSettings.Instance.Manager.isInitializationComplete)
                 compassImage.transform.localRotation = Quaternion.Euler(0,0,corrected.eulerAngles.y);
-            else
-                compassImage.SetActive(false);
         }
         c.transform.rotation = corrected;
     }

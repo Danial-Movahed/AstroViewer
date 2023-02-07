@@ -5475,6 +5475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f478d43f27e324b7199d5dccff4298b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  compassImage: {fileID: 2074744013}
 --- !u!4 &1328913760
 Transform:
   m_ObjectHideFlags: 0
@@ -5956,7 +5957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2074744014
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6049,7 +6050,7 @@ MonoBehaviour:
   longitude: 51.3347
   latitude: 35.7219
   hour: 18
-  minutes: 16
+  minutes: 52
   timeSpeed: 1
   frameSteps: 1
   constellations:

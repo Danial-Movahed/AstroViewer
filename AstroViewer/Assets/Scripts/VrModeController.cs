@@ -31,6 +31,7 @@ public class VrModeController : MonoBehaviour
     // XR isn't initialized on startup, this value could be taken from the main
     // camera and stored.
     private const float _defaultFieldOfView = 60.0f;
+    public GameObject compassImage;
 
     // Main camera from the scene.
     private Camera _mainCamera;
@@ -158,6 +159,7 @@ public class VrModeController : MonoBehaviour
             Debug.Log("Starting XR...");
             XRGeneralSettings.Instance.Manager.StartSubsystems();
             Debug.Log("XR started.");
+            compassImage.SetActive(false);
         }
     }
 
@@ -177,5 +179,6 @@ public class VrModeController : MonoBehaviour
 
         _mainCamera.ResetAspect();
         _mainCamera.fieldOfView = _defaultFieldOfView;
+        compassImage.SetActive(true);
     }
 }

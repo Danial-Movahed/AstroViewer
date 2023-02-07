@@ -41,7 +41,7 @@ namespace Entropedia
             public float ra;
             public float dec;
             public float mag;
-            public string hipID;
+            public int hipID;
         }
         public static int maxStars = 9998;
         public star[] stardb = new star[119613];
@@ -61,16 +61,15 @@ namespace Entropedia
                 stardb[i].ra = float.Parse(values[1]) * 15 * Mathf.Deg2Rad;
                 stardb[i].dec = float.Parse(values[2]) * Mathf.Deg2Rad;
                 stardb[i].mag = float.Parse(values[3]);
-                stardb[i].hipID = values[4];
+                stardb[i].hipID = int.Parse(values[4]);
             }
             theList = Resources.Load<TextAsset>("Constellations");
             constellations = theList.text.Split("\n");
-            
         }
 
-        private star findRaDecByHipID(string id)
+        private star findRaDecByHipID(int id)
         {
-            var star = stardb.FirstOrDefault( s => s.hipID == id );
+            var star = stardb.First( s => s.hipID == id );
             return star;
         }
 
@@ -79,14 +78,15 @@ namespace Entropedia
             for(int i=0;i<86;i++)
             {
                 string[] tmp = constellations[i].Split(",");
+                Debug.Log(i);
                 for(int j=2;j<int.Parse(tmp[1]);j+=2)
                 {
                     GameObject lineR = Instantiate(Resources.Load("ConstLine"), new Vector3(0,0,0), Quaternion.identity) as GameObject;
                     Vector3[] points = new Vector3[2];
-                    var star = findRaDecByHipID(tmp[j]);
+                    var star = findRaDecByHipID(int.Parse(tmp[j]));
                     var angle = SetPosition(star.ra,star.dec);
                     points[0] = cube.transform.position;
-                    star = findRaDecByHipID(tmp[j+1]);
+                    star = findRaDecByHipID(int.Parse(tmp[j+1]));
                     angle = SetPosition(star.ra,star.dec);
                     points[1] = cube.transform.position;
                     lineR.GetComponent<LineRenderer>().SetPositions(points);
