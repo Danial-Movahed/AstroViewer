@@ -12,30 +12,9 @@ public class CameraRaycasting : MonoBehaviour
     private float timestamp = 0.1f;
     private bool isPollingForRaycast = true;
     private RaycastHit hit;
-    public GameObject DescUI, CamCanvas, DescCanvas;
-    public GameObject StarName,StarType,TypeImage,StarMath,StarDesc,StarImage;
+    public GameObject CamCanvas, DescCanvas;
     public Image progress;
-    
-    void Start()
-    {
-        DescCanvas.GetComponent<Canvas>().transform.localScale = CamCanvas.GetComponent<Canvas>().transform.localScale;
-    }
 
-    void ShowStarDescUI(string name)
-    {
-        DescCanvas.GetComponent<Canvas>().transform.rotation = CamCanvas.GetComponent<Canvas>().transform.rotation;
-        DescCanvas.GetComponent<Canvas>().transform.position = CamCanvas.GetComponent<Canvas>().transform.position;
-        DescUI.SetActive(true);
-        // SHOW EVERYTHING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        TextAsset File = Resources.Load<TextAsset>("StarDesc/"+name);
-        string[] linesFromfile = File.text.Split("\n");
-        StarName.GetComponent<TextMeshProUGUI>().text = linesFromfile[0];
-        StarType.GetComponent<TextMeshProUGUI>().text = linesFromfile[1];
-        TypeImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("StarDesc/"+name+"Type");
-        StarMath.GetComponent<TextMeshProUGUI>().text = linesFromfile[2];
-        StarDesc.GetComponent<TextMeshProUGUI>().text = linesFromfile[3];
-        StarImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("StarDesc/"+name);
-    }
 
     void Update()
     {
@@ -57,10 +36,9 @@ public class CameraRaycasting : MonoBehaviour
             {
                 isPollingForRaycast = false;
                 locking = false;
-                ShowStarDescUI(hit.collider.name);
+                hit.collider.gameObject.GetComponent<DescUILoader>().Load(this.gameObject);
             }
         }
-        // Debug.Log(Convert.ToInt32(locking) * (Time.time - timestamp + lockTime) / lockTime);
         progress.fillAmount = Convert.ToInt32(locking) * (Time.time - timestamp + lockTime) / lockTime;
     }
 }
