@@ -1,0 +1,4 @@
+Constellation: Aquila
+Magnitude: 2.86
+Distance: 394.87ly
+Ra/Dec: 19h 47m 19.6s   +10(Deg) 40' 00.3"

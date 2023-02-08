@@ -1,0 +1,4 @@
+Constellation: Libra
+Magnitude: 2.78
+Distance: 75.80ly
+Ra/Dec: 14h 52m 09.0s   -16(Deg) 08' 14.0"

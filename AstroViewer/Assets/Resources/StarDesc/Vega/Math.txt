@@ -1,0 +1,4 @@
+Constellation: Lyra
+Magnitude: 0.09
+Distance 25.04ly
+Ra/Dec 18h 37m 41.4s  +38(Deg) 48' 02.8"

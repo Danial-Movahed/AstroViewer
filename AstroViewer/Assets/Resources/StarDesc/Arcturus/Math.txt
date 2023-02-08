@@ -1,0 +1,4 @@
+Constellation: Bootes
+Magnitude: 0.11
+Distance 36.72ly
+Ra/Dec 14h 16m 42.8s  +19(Deg) 03' 33.3"

@@ -1,0 +1,4 @@
+Constellation: Virgo
+Magnitude: 2.98
+Distance: 109.60ly
+Ra/Dec: 13h 03m 19.8s   +10(Deg) 49' 59.7"

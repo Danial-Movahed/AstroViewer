@@ -1,0 +1,4 @@
+Constellation: Aquarius
+Magnitude: 3.09
+Distance: 523.53ly
+Ra/Dec: 22h 06m 56.3s   -00(Deg) 12' 37.2"

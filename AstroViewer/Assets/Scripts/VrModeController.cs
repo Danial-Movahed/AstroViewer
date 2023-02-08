@@ -180,5 +180,6 @@ public class VrModeController : MonoBehaviour
         _mainCamera.ResetAspect();
         _mainCamera.fieldOfView = _defaultFieldOfView;
         compassImage.SetActive(true);
+        Application.targetFrameRate = 240;
     }
 }
