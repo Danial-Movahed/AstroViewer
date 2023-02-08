@@ -14,15 +14,18 @@ public class DescUILoader : MonoBehaviour
         canv.GetComponent<Canvas>().GetComponent<RectTransform>().rotation = Quaternion.LookRotation( this.transform.position - cam.transform.position );
         canv.GetComponent<Canvas>().GetComponent<RectTransform>().localScale = CamCanvas.GetComponent<Canvas>().GetComponent<RectTransform>().localScale;
         canv.GetComponent<Canvas>().GetComponent<RectTransform>().sizeDelta = CamCanvas.GetComponent<Canvas>().GetComponent<RectTransform>().sizeDelta;
-        TextAsset File = Resources.Load<TextAsset>("StarDesc/"+gameObject.name);
-        string[] linesFromfile = File.text.Split("\n");
         canv.transform.GetChild(0).gameObject.SetActive(true);
-        canv.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = linesFromfile[0];
-        canv.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = linesFromfile[1];
-        Sprite aaa = Resources.Load<Sprite>("StarDesc/"+name+"Type");
-        canv.transform.GetChild(0).GetChild(3).GetComponent<Image>().sprite = aaa;
-        canv.transform.GetChild(0).GetChild(6).GetComponent<TextMeshProUGUI>().text = linesFromfile[2];
-        canv.transform.GetChild(0).GetChild(7).GetComponent<TextMeshProUGUI>().text = linesFromfile[3];
-        canv.transform.GetChild(0).GetChild(8).GetComponent<Image>().sprite = Resources.Load<Sprite>("StarDesc/"+name);
+        TextAsset File = Resources.Load<TextAsset>("StarDesc/"+gameObject.name);
+        if(File != null)
+        {
+            string[] linesFromfile = File.text.Split("\n");
+            canv.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = linesFromfile[0];
+            canv.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = linesFromfile[1];
+            Sprite aaa = Resources.Load<Sprite>("StarDesc/"+name+"Type");
+            canv.transform.GetChild(0).GetChild(3).GetComponent<Image>().sprite = aaa;
+            canv.transform.GetChild(0).GetChild(6).GetComponent<TextMeshProUGUI>().text = linesFromfile[2];
+            canv.transform.GetChild(0).GetChild(7).GetComponent<TextMeshProUGUI>().text = linesFromfile[3];
+            canv.transform.GetChild(0).GetChild(8).GetComponent<Image>().sprite = Resources.Load<Sprite>("StarDesc/"+name);
+        }
     }
 }
