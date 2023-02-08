@@ -19,6 +19,7 @@
 using System.Collections;
 using Google.XR.Cardboard;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR;
 using UnityEngine.XR.Management;
 
@@ -32,6 +33,8 @@ public class VrModeController : MonoBehaviour
     // camera and stored.
     private const float _defaultFieldOfView = 60.0f;
     public GameObject compassImage;
+    public GameObject menuUI;
+    public GameObject vrbtn;
 
     // Main camera from the scene.
     private Camera _mainCamera;
@@ -80,6 +83,11 @@ public class VrModeController : MonoBehaviour
         {
             Api.ScanDeviceParams();
         }
+        if(PlayerPrefs.GetString("defaultMode","true") == "false")
+            ExitVR();
+        vrbtn.GetComponent<Button>().onClick.AddListener(delegate {
+            EnterVR();
+        });
         // XRDevice.fovZoomFactor=4f;
     }
 
@@ -103,14 +111,6 @@ public class VrModeController : MonoBehaviour
                 }
 
                 Api.UpdateScreenParams();
-            }
-            else
-            {
-                // TODO(b/171727815): Add a button to switch to VR mode.
-                if (_isScreenTouched)
-                {
-                    EnterVR();
-                }
             }
         }
     }
@@ -160,6 +160,8 @@ public class VrModeController : MonoBehaviour
             XRGeneralSettings.Instance.Manager.StartSubsystems();
             Debug.Log("XR started.");
             compassImage.SetActive(false);
+            menuUI.SetActive(false);
+            vrbtn.SetActive(false);
         }
     }
 
@@ -180,6 +182,8 @@ public class VrModeController : MonoBehaviour
         _mainCamera.ResetAspect();
         _mainCamera.fieldOfView = _defaultFieldOfView;
         compassImage.SetActive(true);
+        menuUI.SetActive(true);
+        vrbtn.SetActive(true);
         Application.targetFrameRate = 240;
     }
 }

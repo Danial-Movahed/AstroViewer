@@ -42,7 +42,7 @@ public class StarCalc : MonoBehaviour
         public int hipID;
         public string color;
     }
-    public static int maxStars = 9998;
+    public static int maxStars = 10109;
     public star[] stardb = new star[119613];
     public string[] constellations = new string[86];
     private ParticleSystem.Particle[] points = new ParticleSystem.Particle[maxStars];
@@ -56,6 +56,7 @@ public class StarCalc : MonoBehaviour
         string[] linesFromfile = theList.text.Split("\n");
         for(int i=0; i<linesFromfile.Length-1; i++)
         {
+            Debug.Log(i);
             string[] values = linesFromfile[i].Split(',');
             stardb[i].name = values[0];
             stardb[i].ra = float.Parse(values[1]) * 15 * Mathf.Deg2Rad;
@@ -83,6 +84,7 @@ public class StarCalc : MonoBehaviour
             for(int j=2;j<int.Parse(tmp[1]);j+=2)
             {
                 GameObject lineR = Instantiate(Resources.Load("ConstLine"), new Vector3(0,0,0), Quaternion.identity) as GameObject;
+                lineR.name = "Const";
                 Vector3[] points = new Vector3[2];
                 var star = findRaDecByHipID(int.Parse(tmp[j]));
                 var angle = SetPosition(star.ra,star.dec);
@@ -132,10 +134,16 @@ public class StarCalc : MonoBehaviour
                 nameText.name = "Name "+stardb[i].name;
             }
         }
-        plotConstellations();
         PS.SetParticles(points, points.Length);
-        var Cangle=SetPosition(270 * Mathf.Deg2Rad, 66.5 * Mathf.Deg2Rad);
-        circle.transform.rotation = Quaternion.Euler(Cangle);
+        if(PlayerPrefs.GetString("eclipticToggle","true") == "true")
+        {
+            var Cangle=SetPosition(270 * Mathf.Deg2Rad, 66.5 * Mathf.Deg2Rad);
+            circle.transform.rotation = Quaternion.Euler(Cangle);
+        }
+        if(PlayerPrefs.GetString("constToggle","true") == "true")
+        {
+            plotConstellations();
+        }
         yield return 0; 
     }   
 
