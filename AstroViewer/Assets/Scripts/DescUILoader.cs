@@ -20,11 +20,19 @@ public class DescUILoader : MonoBehaviour
         {
             canv.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = gameObject.name;
             canv.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = Resources.Load<TextAsset>("StarDesc/"+gameObject.name+"/Type").text;
-            Sprite aaa = Resources.Load<Sprite>("StarDesc/"+gameObject.name+"/Type");
-            canv.transform.GetChild(0).GetChild(3).GetComponent<Image>().sprite = aaa;
+            canv.transform.GetChild(0).GetChild(3).GetComponent<Image>().sprite = Resources.Load<Sprite>("StarDesc/"+gameObject.name+"/Type");;
             canv.transform.GetChild(0).GetChild(6).GetComponent<TextMeshProUGUI>().text = Resources.Load<TextAsset>("StarDesc/"+gameObject.name+"/Math").text;
             canv.transform.GetChild(0).GetChild(7).GetComponent<TextMeshProUGUI>().text = File.text;
             canv.transform.GetChild(0).GetChild(8).GetComponent<Image>().sprite = Resources.Load<Sprite>("StarDesc/"+gameObject.name+"/Image");
+        }
+        else
+        {
+            canv.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = gameObject.name;
+            canv.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = "NI";
+            canv.transform.GetChild(0).GetChild(3).GetComponent<Image>().sprite = Resources.Load<Sprite>("StarDesc/NI");
+            canv.transform.GetChild(0).GetChild(6).GetComponent<TextMeshProUGUI>().text = "NI";
+            canv.transform.GetChild(0).GetChild(7).GetComponent<TextMeshProUGUI>().text = "NI";
+            canv.transform.GetChild(0).GetChild(8).GetComponent<Image>().sprite = Resources.Load<Sprite>("StarDesc/NI");
         }
     }
 }

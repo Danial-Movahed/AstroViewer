@@ -40,6 +40,7 @@ public class StarCalc : MonoBehaviour
         public float dec;
         public float mag;
         public int hipID;
+        public string color;
     }
     public static int maxStars = 9998;
     public star[] stardb = new star[119613];
@@ -48,6 +49,7 @@ public class StarCalc : MonoBehaviour
     public GameObject cube,cubeController;
     public ParticleSystem PS;
     public GameObject cam;
+    public GameObject circle;
     private void setdb()
     {
         TextAsset theList = Resources.Load<TextAsset>("StarDatabase");
@@ -60,6 +62,7 @@ public class StarCalc : MonoBehaviour
             stardb[i].dec = float.Parse(values[2]) * Mathf.Deg2Rad;
             stardb[i].mag = float.Parse(values[3]);
             stardb[i].hipID = int.Parse(values[4]);
+            stardb[i].color = values[5];
         }
         theList = Resources.Load<TextAsset>("Constellations");
         constellations = theList.text.Split("\n");
@@ -99,7 +102,24 @@ public class StarCalc : MonoBehaviour
             var angle=SetPosition(stardb[i].ra,stardb[i].dec);
             points[i].position = cube.transform.position;
             points[i].startSize=0.03f;
-            points[i].startColor = Color.white * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7),3));
+            switch(stardb[i].color)
+            {
+                case "red":
+                    points[i].startColor = Color.red * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7),3));
+                    break;
+                case "orange":
+                    points[i].startColor = new Color(255,147,0,255) * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7),3));
+                    break;
+                case "blue":
+                    points[i].startColor = Color.blue * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7),3));
+                    break;
+                case "yellow":
+                    points[i].startColor = Color.yellow * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7),3));
+                    break;
+                default:
+                    points[i].startColor = Color.white * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7),3));
+                    break;
+            }
             if(stardb[i].name != "")
             {
                 cubeController.transform.rotation=Quaternion.Euler(angle);
@@ -114,12 +134,14 @@ public class StarCalc : MonoBehaviour
         }
         plotConstellations();
         PS.SetParticles(points, points.Length);
+        var Cangle=SetPosition(-90 * Mathf.Deg2Rad, 66.5 * Mathf.Deg2Rad);
+        circle.transform.rotation = Quaternion.Euler(Cangle);
         yield return 0; 
     }   
 
     public void SetTime(int hour, int minutes) {
         this.hour = hour;
-        this.minutes = minutes;            
+        this.minutes = minutes;
         OnValidate();
     }
 
