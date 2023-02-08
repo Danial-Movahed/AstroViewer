@@ -134,7 +134,7 @@ public class StarCalc : MonoBehaviour
         }
         plotConstellations();
         PS.SetParticles(points, points.Length);
-        var Cangle=SetPosition(-90 * Mathf.Deg2Rad, 66.5 * Mathf.Deg2Rad);
+        var Cangle=SetPosition(270 * Mathf.Deg2Rad, 66.5 * Mathf.Deg2Rad);
         circle.transform.rotation = Quaternion.Euler(Cangle);
         yield return 0; 
     }   
