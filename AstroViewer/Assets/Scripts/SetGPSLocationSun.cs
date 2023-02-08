@@ -1,8 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
-namespace Entropedia {
-  public class SetSunLocation : MonoBehaviour 
+namespace Entropedia
+{
+  public class SetGPSLocationSun : MonoBehaviour 
   {
     [SerializeField]
     Sun sun;
