@@ -13,6 +13,7 @@ public class DescUILoader : MonoBehaviour
         canv.GetComponent<Canvas>().GetComponent<RectTransform>().position = CamCanvas.GetComponent<Canvas>().GetComponent<RectTransform>().position;
         canv.GetComponent<Canvas>().GetComponent<RectTransform>().rotation = Quaternion.LookRotation( this.transform.position - cam.transform.position );
         canv.GetComponent<Canvas>().GetComponent<RectTransform>().localScale = CamCanvas.GetComponent<Canvas>().GetComponent<RectTransform>().localScale;
+        canv.GetComponent<Canvas>().GetComponent<RectTransform>().sizeDelta = CamCanvas.GetComponent<Canvas>().GetComponent<RectTransform>().sizeDelta;
         TextAsset File = Resources.Load<TextAsset>("StarDesc/"+gameObject.name);
         string[] linesFromfile = File.text.Split("\n");
         canv.transform.GetChild(0).gameObject.SetActive(true);
