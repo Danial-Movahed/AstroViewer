@@ -1,0 +1,4 @@
+Constellation: Columba
+Magnitude: 2.61
+Distance: 2611.35ly
+Ra/Dec: 05h 40m 29.8s   -34(Deg) 03' 53.7"

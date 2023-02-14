@@ -1,0 +1,4 @@
+Constellation: Cepheus
+Magnitude: 2.50
+Distance: 49.05ly
+Ra/Dec: 21h 19m 03.8s   +62(Deg) 40' 51.4"

@@ -1,0 +1,4 @@
+Constellation: Lepus
+Magnitude: 2.64
+Distance: 161.23ly
+Ra/Dec: 05h 33m 45.3s   -17(Deg) 48' 30.8"

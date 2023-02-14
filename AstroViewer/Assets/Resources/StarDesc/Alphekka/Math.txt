@@ -1,0 +1,4 @@
+Constellation: Corona Borealis
+Magnitude: 2.22
+Distance: 75.05ly
+Ra/Dec: 15h 35m 39.7s   +26(Deg) 37' 58.4"

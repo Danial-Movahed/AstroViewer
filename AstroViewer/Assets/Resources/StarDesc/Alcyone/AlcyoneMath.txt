@@ -1,0 +1,4 @@
+Constellation: Taurus
+Magnitude: 2.84
+Distance: 403.17ly
+Ra/Dec: 03h 48m 41.3s   +24(Deg) 10' 36.0"

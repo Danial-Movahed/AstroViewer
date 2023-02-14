@@ -1,0 +1,4 @@
+Constellation: Andromeda
+Magnitude: 2.03
+Distance: 97.01ly
+Ra/Dec: 00h 09m 33.3s   +29(Deg) 13' 01.7"

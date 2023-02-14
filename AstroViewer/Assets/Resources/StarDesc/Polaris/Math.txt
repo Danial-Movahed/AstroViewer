@@ -1,0 +1,4 @@
+Constellation: Ursa Minor
+Magnitude: 2.09
+Distance: 432.57ly
+Ra/Dec: 03h 00m 36.7s   +89(Deg) 21' 59.3"

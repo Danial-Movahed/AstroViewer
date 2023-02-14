@@ -1,0 +1,4 @@
+Constellation: Hydra
+Magnitude: 2.13
+Distance: 180.30ly
+Ra/Dec: 09h 28m 44.1s   -08(Deg) 45' 34.7"

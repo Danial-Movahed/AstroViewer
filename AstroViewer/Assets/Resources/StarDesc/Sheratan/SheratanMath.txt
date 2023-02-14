@@ -1,0 +1,4 @@
+Constellation: Aries
+Magnitude: 2.70
+Distance: 58.66ly
+Ra/Dec: 01h 55m 54.1s   +20(Deg) 55' 13.5"

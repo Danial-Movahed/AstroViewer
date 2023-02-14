@@ -1,0 +1,4 @@
+Constellation: Ophiuchus
+Magnitude: 2.13
+Distance: 48.59ly
+Ra/Dec: 17h 35m 59.2s   +12(Deg) 32' 24.3"

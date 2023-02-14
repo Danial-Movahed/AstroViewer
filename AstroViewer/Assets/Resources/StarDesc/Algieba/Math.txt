@@ -1,0 +1,4 @@
+Constellation: Leo
+Magnitude: 2.16
+Distance: 130.10ly
+Ra/Dec: 10h 21m 15.5s   +19(Deg) 43' 23.8"
