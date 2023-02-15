@@ -1,4 +1,0 @@
-Constellation: Hercules
-Magnitude: 2.91
-Distance: 359.60ly
-Ra/Dec: 17h 15m 40.8s   +14(Deg) 21' 39.5"

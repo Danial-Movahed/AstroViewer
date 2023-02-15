@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Linq;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -50,13 +49,13 @@ public class StarCalc : MonoBehaviour
     public ParticleSystem PS;
     public GameObject cam;
     public GameObject circle;
+    public GameObject StarNames,ConstLines,StarColliders;
     private void setdb()
     {
         TextAsset theList = Resources.Load<TextAsset>("StarDatabase");
         string[] linesFromfile = theList.text.Split("\n");
         for(int i=0; i<linesFromfile.Length-1; i++)
         {
-            Debug.Log(i);
             string[] values = linesFromfile[i].Split(',');
             stardb[i].name = values[0];
             stardb[i].ra = float.Parse(values[1]) * 15 * Mathf.Deg2Rad;
@@ -80,11 +79,10 @@ public class StarCalc : MonoBehaviour
         for(int i=0;i<86;i++)
         {
             string[] tmp = constellations[i].Split(",");
-            Debug.Log(i);
             for(int j=2;j<int.Parse(tmp[1]);j+=2)
             {
                 GameObject lineR = Instantiate(Resources.Load("ConstLine"), new Vector3(0,0,0), Quaternion.identity) as GameObject;
-                lineR.name = "Const";
+                lineR.transform.SetParent(ConstLines.transform);
                 Vector3[] points = new Vector3[2];
                 var star = findRaDecByHipID(int.Parse(tmp[j]));
                 var angle = SetPosition(star.ra,star.dec);
@@ -126,10 +124,12 @@ public class StarCalc : MonoBehaviour
             {
                 cubeController.transform.rotation=Quaternion.Euler(angle);
                 GameObject collider = Instantiate(Resources.Load("StarCollider"),cube.transform.position,Quaternion.identity) as GameObject;
+                collider.transform.SetParent(StarColliders.transform);
                 collider.name = stardb[i].name;
                 angle.x-=1;
                 cubeController.transform.rotation=Quaternion.Euler(angle);
                 GameObject nameText = Instantiate(Resources.Load("StarText"),cube.transform.position,Quaternion.LookRotation( cube.transform.position - cam.transform.position )) as GameObject;
+                nameText.transform.SetParent(StarNames.transform);
                 nameText.GetComponent<TextMeshPro>().text=stardb[i].name;
                 nameText.name = "Name "+stardb[i].name;
             }
@@ -138,6 +138,7 @@ public class StarCalc : MonoBehaviour
         if(PlayerPrefs.GetString("eclipticToggle","true") == "true")
         {
             var Cangle=SetPosition(270 * Mathf.Deg2Rad, 66.5 * Mathf.Deg2Rad);
+            circle.SetActive(true);
             circle.transform.rotation = Quaternion.Euler(Cangle);
         }
         if(PlayerPrefs.GetString("constToggle","true") == "true")

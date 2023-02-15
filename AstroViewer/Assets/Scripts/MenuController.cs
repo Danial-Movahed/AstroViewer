@@ -7,7 +7,9 @@ public class MenuController : MonoBehaviour
 {
     public Toggle constToggle,eclipticToggle,defaultvr;
     public Button hamburger;
-    public GameObject ui;
+    public GameObject ui,vrBtn;
+    public GameObject StarNames,ConstLines,StarColliders;
+    public GameObject PS, eliptic;
 
     void Start()
     {
@@ -39,14 +41,20 @@ public class MenuController : MonoBehaviour
     void saveApply()
     {
         ParticleSystem.Particle[] points = new ParticleSystem.Particle[10109];
-        GameObject.Find("Particle System").GetComponent<ParticleSystem>().SetParticles(points, points.Length);
-        GameObject tmp = GameObject.Find("Const");
-        while(tmp != null)
+        PS.GetComponent<ParticleSystem>().SetParticles(points, points.Length);
+        eliptic.SetActive(false);
+        for (var i = ConstLines.transform.childCount - 1; i >= 0; i--)
         {
-            GameObject.Destroy(tmp);
-            tmp = GameObject.Find("Const");
+            Object.Destroy(ConstLines.transform.GetChild(i).gameObject);
         }
-        GameObject.Destroy(GameObject.Find("DayeratolBorooj"));
+        for (var i = StarNames.transform.childCount - 1; i >= 0; i--)
+        {
+            Object.Destroy(StarNames.transform.GetChild(i).gameObject);
+        }
+        for (var i = StarColliders.transform.childCount - 1; i >= 0; i--)
+        {
+            Object.Destroy(StarColliders.transform.GetChild(i).gameObject);
+        }
         if(defaultvr)
             PlayerPrefs.SetString("defaultMode","true");
         else
@@ -61,11 +69,14 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetString("constToggle","true");
         else
             PlayerPrefs.SetString("constToggle","false");
+        PlayerPrefs.Save();
         
         GameObject.Find("StarRotator").GetComponent<StarCalc>().StartCoroutine("plotStar");
+        Debug.Log(PlayerPrefs.GetString("constToggle"));
     }
     void toggleUiVis()
     {
         ui.SetActive(!ui.activeSelf);
+        vrBtn.SetActive(!vrBtn.activeSelf);
     }
 }

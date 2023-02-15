@@ -1,4 +1,0 @@
-Constellation: 
-Magnitude: 
-Distance: 
-Ra/Dec: h m s   (Deg) ' "

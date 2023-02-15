@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 840499569}
-  m_IndirectSpecularColor: {r: 0.059109107, g: 0.054529965, b: 0.034130607, a: 1}
+  m_IndirectSpecularColor: {r: 0.004008654, g: 0.00021840546, b: 0.000000053093196, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &33041763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 33041764}
+  m_Layer: 0
+  m_Name: StarColliders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &33041764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33041763}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.0306225, y: 0.7246875, z: -0.84144706}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &39739523
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,6 +503,12 @@ MonoBehaviour:
   defaultvr: {fileID: 1372541668}
   hamburger: {fileID: 1625610278}
   ui: {fileID: 1860740226}
+  vrBtn: {fileID: 0}
+  StarNames: {fileID: 1576034140}
+  ConstLines: {fileID: 1884494925}
+  StarColliders: {fileID: 33041763}
+  PS: {fileID: 722925869}
+  eliptic: {fileID: 41453321}
 --- !u!1 &131897968
 GameObject:
   m_ObjectHideFlags: 0
@@ -6050,8 +6087,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   longitude: 51.3347
   latitude: 35.72
-  hour: 18
-  minutes: 49
+  hour: 22
+  minutes: 59
   timeSpeed: 1
   frameSteps: 1
 --- !u!108 &840499569
@@ -6123,7 +6160,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840499565}
-  m_LocalRotation: {x: 0.082431175, y: 0.7449242, z: 0.093694635, w: -0.6553735}
+  m_LocalRotation: {x: 0.4712611, y: 0.31663626, z: 0.18608336, w: -0.8018899}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6505,7 +6542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compassImage: {fileID: 2074744013}
-  menuUI: {fileID: 1625610276}
+  menuBtn: {fileID: 1625610276}
   vrbtn: {fileID: 144069868}
 --- !u!4 &1328913760
 Transform:
@@ -6940,6 +6977,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549684426}
   m_CullTransparentMesh: 1
+--- !u!1 &1576034140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1576034141}
+  m_Layer: 0
+  m_Name: StarNames
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1576034141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576034140}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.0306225, y: 0.7246875, z: -0.84144706}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1625610276
 GameObject:
   m_ObjectHideFlags: 0
@@ -7308,6 +7376,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860740226}
   m_CullTransparentMesh: 1
+--- !u!1 &1884494925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1884494926}
+  m_Layer: 0
+  m_Name: ConstLines
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1884494926
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884494925}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.0306225, y: 0.7246875, z: -0.84144706}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1928288016
 GameObject:
   m_ObjectHideFlags: 0
@@ -7500,8 +7599,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   longitude: 51.3347
   latitude: 35.7219
-  hour: 18
-  minutes: 49
+  hour: 22
+  minutes: 59
   timeSpeed: 1
   frameSteps: 1
   constellations:
@@ -7596,6 +7695,9 @@ MonoBehaviour:
   PS: {fileID: 722925871}
   cam: {fileID: 959308587}
   circle: {fileID: 41453321}
+  StarNames: {fileID: 1576034140}
+  ConstLines: {fileID: 1884494925}
+  StarColliders: {fileID: 33041763}
 --- !u!114 &2142808101
 MonoBehaviour:
   m_ObjectHideFlags: 0

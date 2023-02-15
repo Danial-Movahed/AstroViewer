@@ -33,7 +33,7 @@ public class VrModeController : MonoBehaviour
     // camera and stored.
     private const float _defaultFieldOfView = 60.0f;
     public GameObject compassImage;
-    public GameObject menuUI;
+    public GameObject menuBtn;
     public GameObject vrbtn;
 
     // Main camera from the scene.
@@ -160,7 +160,7 @@ public class VrModeController : MonoBehaviour
             XRGeneralSettings.Instance.Manager.StartSubsystems();
             Debug.Log("XR started.");
             compassImage.SetActive(false);
-            menuUI.SetActive(false);
+            menuBtn.SetActive(false);
             vrbtn.SetActive(false);
         }
     }
@@ -182,7 +182,7 @@ public class VrModeController : MonoBehaviour
         _mainCamera.ResetAspect();
         _mainCamera.fieldOfView = _defaultFieldOfView;
         compassImage.SetActive(true);
-        menuUI.SetActive(true);
+        menuBtn.SetActive(true);
         vrbtn.SetActive(true);
         Application.targetFrameRate = 240;
     }
