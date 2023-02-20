@@ -18,11 +18,11 @@ namespace Entropedia
 
         [SerializeField]
         [Range(0, 24)]
-        int hour;
+        public int hour;
 
         [SerializeField]
         [Range(0, 60)]
-        int minutes;
+        public int minutes;
 
         DateTime time;
         Light light;
@@ -36,6 +36,8 @@ namespace Entropedia
 
         [SerializeField]
         DateTime date;
+
+        public bool isRealtimeEnabled = true;
 
         public void SetTime(int hour, int minutes) {
             this.hour = hour;
@@ -82,16 +84,17 @@ namespace Entropedia
 
         private void Update()
         {
-            time = time.AddSeconds(timeSpeed * Time.deltaTime);
-            if (frameStep==0) {
-                SetPosition();
+            if(isRealtimeEnabled)
+            {
+                time = time.AddSeconds(timeSpeed * Time.deltaTime);
+                if (frameStep==0) {
+                    SetPosition();
+                }
+                frameStep = (frameStep + 1) % frameSteps;
             }
-            frameStep = (frameStep + 1) % frameSteps;
-
-
         }
 
-        void SetPosition()
+        public void SetPosition()
         {
 
             Vector3 angles = new Vector3();
