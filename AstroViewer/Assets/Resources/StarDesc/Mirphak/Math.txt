@@ -1,0 +1,4 @@
+Constellation: Perseus
+Magnitude: 1.79
+Distance: 506.45ly
+Ra/Dec: 03h 25m 57.8s   +49(Deg) 56' 43.6"

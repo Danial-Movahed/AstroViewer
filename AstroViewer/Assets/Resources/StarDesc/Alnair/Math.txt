@@ -1,0 +1,4 @@
+Constellation: Centaurus
+Magnitude: 2.44
+Distance: 381.92ly
+Ra/Dec: 13h 56m 59.5s   -47(Deg) 23' 57.7"

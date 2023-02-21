@@ -1,0 +1,4 @@
+Constellation: Triangulum Australe
+Magnitude: 2.06
+Distance: 390.61ly
+Ra/Dec: 16h 51m 05.7s   -69(Deg) 03' 50.9"
