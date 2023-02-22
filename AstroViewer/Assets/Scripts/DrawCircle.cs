@@ -15,7 +15,7 @@ public class DrawCircle: MonoBehaviour {
     void Update() {
         Theta = 0f;
         Size = (int)((1f / ThetaScale) + 1f);
-        LineDrawer.SetVertexCount(Size);
+        LineDrawer.positionCount = Size;
         for (int i = 0; i < Size; i++) {
             Theta += (2.0f * Mathf.PI * ThetaScale);
             float x = radius * Mathf.Cos(Theta);
