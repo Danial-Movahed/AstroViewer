@@ -1,0 +1,4 @@
+Constellation: carina
+Magnitude: 1.66
+Distance: 113.17ly
+Ra/Dec: 09h 13m 29.2s   -69(Deg) 48' 44.1"

@@ -1,0 +1,4 @@
+Constellation: Scorpius
+Magnitude: 1.52
+Distance: 571.21ly
+Ra/Dec: 17h 35m 09.4s   -37(Deg) 07' 08.5"

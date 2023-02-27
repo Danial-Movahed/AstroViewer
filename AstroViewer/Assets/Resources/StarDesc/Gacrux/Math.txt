@@ -1,0 +1,4 @@
+Constellation: Crux
+Magnitude: 1.63
+Distance: 88.56ly
+Ra/Dec: 12h 32m 28.3s   -57(Deg) 14' 24.5"

@@ -1,0 +1,4 @@
+Constellation: Auriga
+Magnitude: 1.65
+Distance: 133.89ly
+Ra/Dec: 05h 27m 45.2s   +28(Deg) 37' 38.7"

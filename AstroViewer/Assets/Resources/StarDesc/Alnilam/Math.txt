@@ -1,0 +1,4 @@
+Constellation: Orion
+Magnitude: 1.62
+Distance: 2000ly
+Ra/Dec: 5h 37m 23.3s   -01(Deg) 11' 20.4"
