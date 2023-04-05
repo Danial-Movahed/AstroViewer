@@ -1,0 +1,3 @@
+Constellation: Canes Venatici
+Magnitude: 6.38
+Ra/Dec 13h 43m 17.0s  +28(Deg) 15' 29.5"
