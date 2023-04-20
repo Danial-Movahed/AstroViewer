@@ -79,7 +79,7 @@ public class StarCalc : MonoBehaviour
         for(int i=0;i<86;i++)
         {
             string[] tmp = constellations[i].Split(",");
-            for(int j=2;j<int.Parse(tmp[1]);j+=2)
+            for(int j=2;j<tmp.Length;j+=2)
             {
                 GameObject lineR = Instantiate(Resources.Load("ConstLine"), new Vector3(0,0,0), Quaternion.identity) as GameObject;
                 lineR.transform.SetParent(ConstLines.transform);
