@@ -1,0 +1,3 @@
+Constellation: Cancer
+Magnitude: 3.09
+Ra/Dec 08h 41m43.7s   +19°35'06.8"

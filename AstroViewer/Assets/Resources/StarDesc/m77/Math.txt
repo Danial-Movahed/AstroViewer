@@ -1,0 +1,3 @@
+Constellation: Cetus
+Magnitude: 8.81
+Ra/Dec 02h 43m50.5s   +00°05'00.4"

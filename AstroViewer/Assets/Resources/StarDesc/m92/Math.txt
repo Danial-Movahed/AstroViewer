@@ -1,0 +1,3 @@
+Constellation: Hercules
+Magnitude: 6.50
+Ra/Dec 17h 17m51.2s   +43°06'21.3"

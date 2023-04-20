@@ -1,0 +1,3 @@
+Constellation: Andromeda
+Magnitude: 8.06
+Ra/Dec 00h 41m35.9s   +41°48'34.5"

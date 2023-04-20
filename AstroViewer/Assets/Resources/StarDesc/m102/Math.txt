@@ -1,0 +1,3 @@
+Constellation: Draco
+Magnitude: 9.88
+Ra/Dec 15h 07m10.3s   +55°40'16.5"

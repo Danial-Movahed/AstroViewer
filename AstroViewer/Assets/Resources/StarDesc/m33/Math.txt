@@ -1,0 +1,3 @@
+Constellation: Triangulum
+Magnitude: 5.72
+Ra/Dec 01h 35m07.5s   +30°46'35.6"
