@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 840499569}
-  m_IndirectSpecularColor: {r: 0.0040798546, g: 0.00022334782, b: 0.000000059486236, a: 1}
+  m_IndirectSpecularColor: {r: 0.4432751, g: 0.49230725, b: 0.571746, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -540,6 +540,7 @@ MonoBehaviour:
   defaultvrToggle: {fileID: 1372541668}
   realTimeSunToggle: {fileID: 176027572}
   hamburger: {fileID: 1625610278}
+  hamburgerAnimation: {fileID: 1625610281}
   ui: {fileID: 1860740226}
   vrBtn: {fileID: 144069868}
   SunTimeSlider: {fileID: 1081132999}
@@ -6404,8 +6405,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   longitude: 51.3347
   latitude: 35.72
-  hour: 20
-  minutes: 4
+  hour: 14
+  minutes: 8
   timeSpeed: 1
   frameSteps: 1
   isRealtimeEnabled: 1
@@ -6421,7 +6422,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -6478,7 +6479,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840499565}
-  m_LocalRotation: {x: 0.17836377, y: 0.6407845, z: 0.1565394, w: -0.73012125}
+  m_LocalRotation: {x: -0.20845887, y: 0.7907611, z: -0.386741, w: -0.42623138}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7682,13 +7683,14 @@ GameObject:
   - component: {fileID: 1625610280}
   - component: {fileID: 1625610279}
   - component: {fileID: 1625610278}
+  - component: {fileID: 1625610281}
   m_Layer: 5
   m_Name: MenuBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1625610277
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7791,6 +7793,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625610276}
   m_CullTransparentMesh: 1
+--- !u!111 &1625610281
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625610276}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 3746cfbd48774c0a1b1e91877cada30e, type: 2}
+  - {fileID: 7400000, guid: 967fbee362b04c776b3d3143b648d2db, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1723357365
 GameObject:
   m_ObjectHideFlags: 0
@@ -8418,8 +8437,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   longitude: 51.3347
   latitude: 35.7219
-  hour: 20
-  minutes: 4
+  hour: 14
+  minutes: 8
   timeSpeed: 1
   frameSteps: 1
   constellations:
