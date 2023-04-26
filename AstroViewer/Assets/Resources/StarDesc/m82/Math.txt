@@ -1,0 +1,3 @@
+Constellation: Usra Major
+Magnitude: 8.38
+Ra/Dec 09h 57m48.9s   +69°34'26.9"
