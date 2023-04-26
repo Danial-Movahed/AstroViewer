@@ -7,12 +7,12 @@ public class MenuController : MonoBehaviour
 {
     public Toggle constToggle,eclipticToggle,defaultvrToggle,realTimeSunToggle;
     public Button hamburger;
-    public Animation hamburgerAnimation; 
     public GameObject ui,vrBtn, SunTimeSlider;
     public GameObject StarNames,ConstLines,StarColliders;
     public GameObject PS, eliptic;
     public Sun sun;
     public TextMeshProUGUI sunTimeText;
+    public MenuBtnAnimationController menuBtnAnimationController;
 
     void Start()
     {
@@ -130,9 +130,9 @@ public class MenuController : MonoBehaviour
     void toggleUiVis()
     {
         if(!ui.activeSelf)
-            hamburgerAnimation.Play("MenuBtnOpen");
+            menuBtnAnimationController.PlayAnimation("MenuBtnOpen");
         else
-            hamburgerAnimation.Play("MenuBtnClose");
+            menuBtnAnimationController.PlayAnimation("MenuBtnClose");
         ui.SetActive(!ui.activeSelf);
         vrBtn.SetActive(!vrBtn.activeSelf);
     }
