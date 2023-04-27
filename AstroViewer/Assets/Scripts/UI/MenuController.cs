@@ -5,13 +5,15 @@ using TMPro;
 using Entropedia;
 public class MenuController : MonoBehaviour
 {
-    public Toggle constToggle,eclipticToggle,defaultvrToggle,realTimeSunToggle;
+    // public Toggle constToggle,eclipticToggle,defaultvrToggle,realTimeSunToggle;
+    public Toggle constToggle,eclipticToggle,defaultvrToggle;
     public Button hamburger;
-    public GameObject ui,vrBtn, SunTimeSlider;
+    // public GameObject ui,vrBtn, SunTimeSlider;
+    public GameObject ui,vrBtn;
     public GameObject StarNames,ConstLines,StarColliders;
     public GameObject PS, eliptic;
     public Sun sun;
-    public TextMeshProUGUI sunTimeText;
+    // public TextMeshProUGUI sunTimesText;
     public MenuBtnAnimationController menuBtnAnimationController;
 
     void Start()
@@ -28,22 +30,22 @@ public class MenuController : MonoBehaviour
             eclipticToggle.isOn = true;
         else
             eclipticToggle.isOn = false;
-        if(PlayerPrefs.GetString("realTimeSunToggle","true") == "true")
-        {
-            realTimeSunToggle.isOn = true;
-            sun.isRealtimeEnabled = true;
-            SunTimeSlider.SetActive(false);
-        }
-        else
-        {
-            realTimeSunToggle.isOn = false;
-            sun.isRealtimeEnabled = false;
-            SunTimeSlider.SetActive(true);
-            setupTimeSliderText();
-        }
-        SunTimeSlider.GetComponent<Slider>().onValueChanged.AddListener(delegate {
-            sunChangeTime();
-        });
+        // if(PlayerPrefs.GetString("realTimeSunToggle","true") == "true")
+        // {
+        //     realTimeSunToggle.isOn = true;
+        //     sun.isRealtimeEnabled = true;
+        //     SunTimeSlider.SetActive(false);
+        // }
+        // else
+        // {
+        //     realTimeSunToggle.isOn = false;
+        //     sun.isRealtimeEnabled = false;
+        //     SunTimeSlider.SetActive(true);
+        //     setupTimeSliderText();
+        // }
+        // SunTimeSlider.GetComponent<Slider>().onValueChanged.AddListener(delegate {
+        //     sunChangeTime();
+        // });
         eclipticToggle.onValueChanged.AddListener(delegate {
             saveApply();
         });
@@ -53,30 +55,30 @@ public class MenuController : MonoBehaviour
         defaultvrToggle.onValueChanged.AddListener(delegate {
             saveApply();
         });
-        realTimeSunToggle.onValueChanged.AddListener(delegate {
-            setupTimeSliderText();
-            saveApply();
-        });
+        // realTimeSunToggle.onValueChanged.AddListener(delegate {
+        //     setupTimeSliderText();
+        //     saveApply();
+        // });
         hamburger.onClick.AddListener(delegate {
             toggleUiVis();
         });
     }
-    void setupTimeSliderText()
-    {
-        sun.minutes = 0;
-        sun.hour = 1;
-        sun.SetTime(1,0);
-        sun.SetPosition();
-        sunTimeText.text = "Sun Time: 1:00";
-    }
-    void sunChangeTime()
-    {
-        sun.minutes = 0;
-        sun.hour = (int)SunTimeSlider.GetComponent<Slider>().value;
-        sun.SetTime((int)SunTimeSlider.GetComponent<Slider>().value,0);
-        sun.SetPosition();
-        sunTimeText.text = "Sun Time: "+((int)SunTimeSlider.GetComponent<Slider>().value).ToString()+":00";
-    }
+    // void setupTimeSliderText()
+    // {
+    //     sun.minutes = 0;
+    //     sun.hour = 1;
+    //     sun.SetTime(1,0);
+    //     sun.SetPosition();
+    //     sunTimeText.text = "Sun Time: 1:00";
+    // }
+    // void sunChangeTime()
+    // {
+    //     sun.minutes = 0;
+    //     sun.hour = (int)SunTimeSlider.GetComponent<Slider>().value;
+    //     sun.SetTime((int)SunTimeSlider.GetComponent<Slider>().value,0);
+    //     sun.SetPosition();
+    //     sunTimeText.text = "Sun Time: "+((int)SunTimeSlider.GetComponent<Slider>().value).ToString()+":00";
+    // }
     void saveApply()
     {
         ParticleSystem.Particle[] points = new ParticleSystem.Particle[10109];
@@ -109,20 +111,20 @@ public class MenuController : MonoBehaviour
         else
             PlayerPrefs.SetString("constToggle","false");
         
-        if(realTimeSunToggle.isOn)
-        {
-            PlayerPrefs.SetString("realTimeSunToggle","true");
-            SunTimeSlider.SetActive(false);
-            sun.isRealtimeEnabled = true;
-            sun.SetDate(new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day,DateTime.Now.Hour,DateTime.Now.Minute,0));
-            sun.SetPosition();
-        }
-        else
-        {
-            PlayerPrefs.SetString("realTimeSunToggle","false");
-            SunTimeSlider.SetActive(true);
-            sun.isRealtimeEnabled = false;
-        }
+        // if(realTimeSunToggle.isOn)
+        // {
+        //     PlayerPrefs.SetString("realTimeSunToggle","true");
+        //     SunTimeSlider.SetActive(false);
+        //     sun.isRealtimeEnabled = true;
+        //     sun.SetDate(new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day,DateTime.Now.Hour,DateTime.Now.Minute,0));
+        //     sun.SetPosition();
+        // }
+        // else
+        // {
+        //     PlayerPrefs.SetString("realTimeSunToggle","false");
+        //     SunTimeSlider.SetActive(true);
+        //     sun.isRealtimeEnabled = false;
+        // }
         PlayerPrefs.Save();
         
         GameObject.Find("StarRotator").GetComponent<StarCalc>().StartCoroutine("plotStar");

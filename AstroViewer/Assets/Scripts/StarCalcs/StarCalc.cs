@@ -44,17 +44,17 @@ public class StarCalc : MonoBehaviour
     public static int maxStars = 10109;
     public star[] stardb = new star[119613];
     public string[] constellations = new string[86];
-    private ParticleSystem.Particle[] points = new ParticleSystem.Particle[maxStars];
-    public GameObject cube,cubeController;
+    private ParticleSystem.Particle[] points = new ParticleSystem.Particle[maxStars+4];
+    public GameObject cube, cubeController;
     public ParticleSystem PS;
     public GameObject cam;
     public GameObject circle;
-    public GameObject StarNames,ConstLines,StarColliders;
+    public GameObject StarNames, ConstLines, StarColliders;
     private void setdb()
     {
         TextAsset theList = Resources.Load<TextAsset>("StarDatabase");
         string[] linesFromfile = theList.text.Split("\n");
-        for(int i=0; i<linesFromfile.Length-1; i++)
+        for (int i = 0; i < linesFromfile.Length - 1; i++)
         {
             string[] values = linesFromfile[i].Split(',');
             stardb[i].name = values[0];
@@ -70,25 +70,29 @@ public class StarCalc : MonoBehaviour
 
     private star findRaDecByHipID(int id)
     {
-        var star = stardb.First( s => s.hipID == id );
+        var star = stardb.First(s => s.hipID == id);
         return star;
     }
 
     private void plotConstellations()
     {
-        for(int i=0;i<86;i++)
+        for (int i = 0; i < 86; i++)
         {
             string[] tmp = constellations[i].Split(",");
-            for(int j=2;j<tmp.Length;j+=2)
+            GameObject constelGroup = Instantiate(Resources.Load("Empty"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            constelGroup.name = tmp[0];
+            constelGroup.tag = "Constellations";
+            constelGroup.transform.SetParent(ConstLines.transform);
+            for (int j = 2; j < tmp.Length; j += 2)
             {
-                GameObject lineR = Instantiate(Resources.Load("ConstLine"), new Vector3(0,0,0), Quaternion.identity) as GameObject;
-                lineR.transform.SetParent(ConstLines.transform);
+                GameObject lineR = Instantiate(Resources.Load("ConstLine"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+                lineR.transform.SetParent(constelGroup.transform);
                 Vector3[] points = new Vector3[2];
                 var star = findRaDecByHipID(int.Parse(tmp[j]));
-                var angle = SetPosition(star.ra,star.dec);
+                var angle = SetPosition(star.ra, star.dec);
                 points[0] = cube.transform.position;
-                star = findRaDecByHipID(int.Parse(tmp[j+1]));
-                angle = SetPosition(star.ra,star.dec);
+                star = findRaDecByHipID(int.Parse(tmp[j + 1]));
+                angle = SetPosition(star.ra, star.dec);
                 points[1] = cube.transform.position;
                 lineR.GetComponent<LineRenderer>().SetPositions(points);
             }
@@ -97,80 +101,135 @@ public class StarCalc : MonoBehaviour
 
     private IEnumerator plotStar()
     {
-        for(int i=0; i<maxStars; i++)
+        GameObject nameText;
+        for (int i = 0; i < maxStars; i++)
         {
-            var angle=SetPosition(stardb[i].ra,stardb[i].dec);
+            var angle = SetPosition(stardb[i].ra, stardb[i].dec);
             points[i].position = cube.transform.position;
-            points[i].startSize=0.03f;
-            switch(stardb[i].color)
+            points[i].startSize = 0.03f;
+            switch (stardb[i].color)
             {
                 case "red":
-                    points[i].startColor = Color.red * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7),3));
+                    points[i].startColor = Color.red * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7), 3));
                     break;
                 case "orange":
-                    points[i].startColor = new Color(255,147,0,255) * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7),3));
+                    points[i].startColor = new Color(255, 147, 0, 255) * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7), 3));
                     break;
                 case "blue":
-                    points[i].startColor = Color.blue * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7),3));
+                    points[i].startColor = Color.blue * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7), 3));
                     break;
                 case "yellow":
-                    points[i].startColor = Color.yellow * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7),3));
+                    points[i].startColor = Color.yellow * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7), 3));
                     break;
                 default:
-                    points[i].startColor = Color.white * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7),3));
+                    points[i].startColor = Color.white * (1.0f - Mathf.Pow(((stardb[i].mag + 0.1f) / 7), 3));
                     break;
             }
-            if(stardb[i].name != "")
+            if (stardb[i].name != "")
             {
-                cubeController.transform.rotation=Quaternion.Euler(angle);
-                GameObject collider = Instantiate(Resources.Load("StarCollider"),cube.transform.position,Quaternion.identity) as GameObject;
+                // cubeController.transform.rotation = Quaternion.Euler(angle);
+                GameObject collider = Instantiate(Resources.Load("StarCollider"), cube.transform.position, Quaternion.identity) as GameObject;
                 collider.transform.SetParent(StarColliders.transform);
                 collider.name = stardb[i].name;
-                angle.x-=1;
-                cubeController.transform.rotation=Quaternion.Euler(angle);
-                GameObject nameText = Instantiate(Resources.Load("StarText"),cube.transform.position,Quaternion.LookRotation( cube.transform.position - cam.transform.position )) as GameObject;
+                angle.x -= 1;
+                cubeController.transform.rotation = Quaternion.Euler(angle);
+                nameText = Instantiate(Resources.Load("StarText"), cube.transform.position, Quaternion.LookRotation(cube.transform.position - cam.transform.position)) as GameObject;
                 nameText.transform.SetParent(StarNames.transform);
-                nameText.GetComponent<TextMeshPro>().text=stardb[i].name;
-                nameText.name = "Name "+stardb[i].name;
+                nameText.GetComponent<TextMeshPro>().text = stardb[i].name;
+                nameText.name = "Name " + stardb[i].name;
             }
         }
+        // North
+        cubeController.transform.rotation = Quaternion.Euler(new Vector3(0,-90,0));
+        points[maxStars].position = cube.transform.position;
+        points[maxStars].startColor = Color.red;
+        points[maxStars].startSize = 0.1f;
+
+        cubeController.transform.rotation = Quaternion.Euler(new Vector3(-2,-90,0));
+        nameText = Instantiate(Resources.Load("StarText"), cube.transform.position, Quaternion.LookRotation(cube.transform.position - cam.transform.position)) as GameObject;
+        nameText.transform.SetParent(StarNames.transform);
+        nameText.GetComponent<TextMeshPro>().text = "North";
+        nameText.GetComponent<TextMeshPro>().fontSize += 2;
+        nameText.name = "Name North";
+        // South
+        cubeController.transform.rotation = Quaternion.Euler(new Vector3(0,90,0));
+        points[maxStars+1].position = cube.transform.position;
+        points[maxStars+1].startColor = Color.blue;
+        points[maxStars+1].startSize = 0.1f;
+
+        cubeController.transform.rotation = Quaternion.Euler(new Vector3(-2,90,0));
+        nameText = Instantiate(Resources.Load("StarText"), cube.transform.position, Quaternion.LookRotation(cube.transform.position - cam.transform.position)) as GameObject;
+        nameText.transform.SetParent(StarNames.transform);
+        nameText.GetComponent<TextMeshPro>().text = "South";
+        nameText.GetComponent<TextMeshPro>().fontSize += 2;
+        nameText.name = "Name South";
+        // East
+        cubeController.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
+        points[maxStars+2].position = cube.transform.position;
+        points[maxStars+2].startColor = Color.yellow;
+        points[maxStars+2].startSize = 0.1f;
+
+        cubeController.transform.rotation = Quaternion.Euler(new Vector3(-2,0,0));
+        nameText = Instantiate(Resources.Load("StarText"), cube.transform.position, Quaternion.LookRotation(cube.transform.position - cam.transform.position)) as GameObject;
+        nameText.transform.SetParent(StarNames.transform);
+        nameText.GetComponent<TextMeshPro>().text = "East";
+        nameText.GetComponent<TextMeshPro>().fontSize += 2;
+        nameText.name = "Name East";
+        // West
+        cubeController.transform.rotation = Quaternion.Euler(new Vector3(0,180,0));
+        points[maxStars+3].position = cube.transform.position;
+        points[maxStars+3].startColor = Color.green;
+        points[maxStars+3].startSize = 0.1f;
+
+        cubeController.transform.rotation = Quaternion.Euler(new Vector3(-2,180,0));
+        nameText = Instantiate(Resources.Load("StarText"), cube.transform.position, Quaternion.LookRotation(cube.transform.position - cam.transform.position)) as GameObject;
+        nameText.transform.SetParent(StarNames.transform);
+        nameText.GetComponent<TextMeshPro>().text = "West";
+        nameText.GetComponent<TextMeshPro>().fontSize += 2;
+        nameText.name = "Name West";
+        // #############################
         PS.SetParticles(points, points.Length);
-        if(PlayerPrefs.GetString("eclipticToggle","true") == "true")
+        if (PlayerPrefs.GetString("eclipticToggle", "true") == "true")
         {
-            var Cangle=SetPosition(270 * Mathf.Deg2Rad, 66.5 * Mathf.Deg2Rad);
+            var Cangle = SetPosition(270 * Mathf.Deg2Rad, 66.5 * Mathf.Deg2Rad);
             circle.SetActive(true);
             circle.transform.rotation = Quaternion.Euler(Cangle);
         }
-        if(PlayerPrefs.GetString("constToggle","true") == "true")
+        if (PlayerPrefs.GetString("constToggle", "true") == "true")
         {
             plotConstellations();
         }
-        yield return 0; 
-    }   
+        yield return 0;
+    }
 
-    public void SetTime(int hour, int minutes) {
+    public void SetTime(int hour, int minutes)
+    {
         this.hour = hour;
         this.minutes = minutes;
         OnValidate();
     }
 
-    public void SetLocation(float longitude, float latitude){
+    public void SetLocation(float longitude, float latitude)
+    {
         this.longitude = longitude;
         this.latitude = latitude;
     }
 
-    public void SetDate(DateTime dateTime){
+    public void SetDate(DateTime dateTime)
+    {
         this.hour = dateTime.Hour;
         this.minutes = dateTime.Minute;
         this.date = dateTime.Date;
         OnValidate();
     }
 
-    public void SetUpdateSteps(int i) {
+    public void SetUpdateSteps(int i)
+    {
         frameSteps = i;
     }
 
-    public void SetTimeSpeed(float speed) {
+    public void SetTimeSpeed(float speed)
+    {
         timeSpeed = speed;
     }
 
@@ -212,16 +271,16 @@ public class StarCalc : MonoBehaviour
         return angles;
     }
 
-    
+
 }
 
 public static class SunPosition
 {
     public static void CalculateSunPosition(
-        DateTime dateTime, double latitude, double longitude, double rightAscension, double declination ,out double outAzimuth, out double outAltitude)
+        DateTime dateTime, double latitude, double longitude, double rightAscension, double declination, out double outAzimuth, out double outAltitude)
     {
         // Convert to UTC  
-        dateTime = dateTime.ToUniversalTime();            
+        dateTime = dateTime.ToUniversalTime();
 
         // Number of days from J2000.0.  
         double julianDate = 367 * dateTime.Year -
@@ -232,7 +291,7 @@ public static class SunPosition
 
         double julianCenturies = julianDate / 36525.0;
 
-    //     // Sidereal Time  
+        //     // Sidereal Time  
         double siderealTimeHours = 6.6974 + 2400.0513 * julianCenturies;
 
         double siderealTimeUT = siderealTimeHours +
