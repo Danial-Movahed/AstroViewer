@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 840499569}
-  m_IndirectSpecularColor: {r: 0.44767922, g: 0.49702054, b: 0.57268757, a: 1}
+  m_IndirectSpecularColor: {r: 0.44628125, g: 0.49566197, b: 0.57308996, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -505,7 +505,7 @@ MonoBehaviour:
   ui: {fileID: 1860740226}
   vrBtn: {fileID: 144069868}
   StarNames: {fileID: 1576034140}
-  ConstLines: {fileID: 0}
+  ConstLines: {fileID: 987363496}
   StarColliders: {fileID: 33041763}
   PS: {fileID: 722925869}
   eliptic: {fileID: 41453321}
@@ -6378,7 +6378,7 @@ MonoBehaviour:
   longitude: 51.3347
   latitude: 35.72
   hour: 8
-  minutes: 30
+  minutes: 57
   timeSpeed: 1
   frameSteps: 1
   isRealtimeEnabled: 1
@@ -6451,7 +6451,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840499565}
-  m_LocalRotation: {x: 0.20421927, y: 0.73209953, z: -0.2490838, w: 0.60023504}
+  m_LocalRotation: {x: 0.21931416, y: 0.7451433, z: -0.293176, w: 0.5574143}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8410,7 +8410,7 @@ MonoBehaviour:
   longitude: 51.3347
   latitude: 35.7219
   hour: 8
-  minutes: 30
+  minutes: 57
   timeSpeed: 1
   frameSteps: 1
   constellations:
@@ -8560,6 +8560,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4118674522725249695, guid: 777cd913cfe5a047aacc2513717965c0, type: 3}
+      propertyPath: lockTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4118674522725249695, guid: 777cd913cfe5a047aacc2513717965c0, type: 3}
       propertyPath: progress
       value: 

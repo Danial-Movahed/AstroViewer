@@ -9,7 +9,7 @@ using TMPro;
 
 public class CameraRaycasting : MonoBehaviour
 {
-    public float lockTime = 3.0f; 
+    public float lockTime = 1.5f; 
     private bool locking = false;
     private float timestamp = 0.1f;
     private RaycastHit[] hit;
