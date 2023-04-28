@@ -1,0 +1,4 @@
+Constellation: Spectroscopic
+Magnitude: 2.55
+Distance: 84.72ly
+Ra/Dec: 00h 27m24.3s   -42°10'46.6"

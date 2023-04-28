@@ -1,0 +1,4 @@
+Constellation: Cassiopeaia
+Magnitude: 2.70
+Distance: 99.41ly
+Ra/Dec: 01h 27m17.6s   +60°21'11.1"

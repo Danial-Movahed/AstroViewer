@@ -1,0 +1,4 @@
+Constellation: Cetus
+Magnitude: 4.97
+Distance: 298.96ly
+Ra/Dec: 02h 20m29.7s   -02°52'27.4"

@@ -1,0 +1,4 @@
+Constellation: ?
+Magnitude:  19.27
+Distance: 1.97 AU
+Ra/Dec: 21h 40m00.8s   -20°17'49.4"
