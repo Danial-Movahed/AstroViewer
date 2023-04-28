@@ -12,10 +12,11 @@ public class CameraRaycasting : MonoBehaviour
     public float lockTime = 3.0f; 
     private bool locking = false;
     private float timestamp = 0.1f;
-    private RaycastHit hit;
+    private RaycastHit[] hit;
     public GameObject CamCanvas, DescCanvas;
     public Image progress;
     private bool isUiOpen=false;
+    private GameObject starHitLoading;
     public GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     public EventSystem m_EventSystem;
@@ -23,23 +24,32 @@ public class CameraRaycasting : MonoBehaviour
     {
         if(!isUiOpen)
         {
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+            hit = Physics.RaycastAll(transform.position, transform.TransformDirection(Vector3.forward), Mathf.Infinity);
+            foreach(RaycastHit h in hit)
             {
-                if (!locking)
+                if(h.collider.gameObject.tag == "Constellations")
                 {
+                    h.collider.gameObject.GetComponent<ConstellationAnimation>().ShowAnimation();
+                }
+                else if (!locking)
+                {
+                    Debug.Log("Found star!");
+                    starHitLoading = h.collider.gameObject;
                     locking = true;
                     timestamp = Time.time + lockTime;
                 }
             }
-            else
+            if(!Array.Exists(hit, x => x.collider.gameObject.Equals(starHitLoading)))
             {
+                Debug.Log("Dead!");
                 locking = false;
+                starHitLoading = null;
             }
             if (locking && Time.time >= timestamp)
             {
                 isUiOpen=true;
                 locking = false;
-                hit.collider.gameObject.GetComponent<DescUILoader>().Load(this.gameObject);
+                starHitLoading.GetComponent<DescUILoader>().Load(this.gameObject);
             }
             progress.fillAmount = Convert.ToInt32(locking) * (Time.time - timestamp + lockTime) / lockTime;
         }

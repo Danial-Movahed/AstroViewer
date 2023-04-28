@@ -44,7 +44,7 @@ public class StarCalc : MonoBehaviour
     public static int maxStars = 10109;
     public star[] stardb = new star[119613];
     public string[] constellations = new string[86];
-    private ParticleSystem.Particle[] points = new ParticleSystem.Particle[maxStars+4];
+    private ParticleSystem.Particle[] points = new ParticleSystem.Particle[maxStars + 4];
     public GameObject cube, cubeController;
     public ParticleSystem PS;
     public GameObject cam;
@@ -79,24 +79,95 @@ public class StarCalc : MonoBehaviour
         for (int i = 0; i < 86; i++)
         {
             string[] tmp = constellations[i].Split(",");
-            GameObject constelGroup = Instantiate(Resources.Load("Empty"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            // First time manual calculation for group
+            Vector3[] points = new Vector3[2];
+            var star = findRaDecByHipID(int.Parse(tmp[2]));
+            var angle = SetPosition(star.ra, star.dec);
+            var startingPos = cube.transform.position;
+            GameObject lineR = Instantiate(Resources.Load("ConstLine"), startingPos, Quaternion.identity) as GameObject;
+            points[0] = cube.transform.position - startingPos;
+            star = findRaDecByHipID(int.Parse(tmp[3]));
+            angle = SetPosition(star.ra, star.dec);
+            points[1] = cube.transform.position - startingPos;
+            lineR.GetComponent<LineRenderer>().SetPositions(points);
+            GameObject constelGroup = Instantiate(Resources.Load("Empty"), points[1] + startingPos, Quaternion.LookRotation(cube.transform.position - cam.transform.position)) as GameObject;
+            constelGroup.AddComponent<ConstellationAnimation>();
             constelGroup.name = tmp[0];
             constelGroup.tag = "Constellations";
             constelGroup.transform.SetParent(ConstLines.transform);
-            for (int j = 2; j < tmp.Length; j += 2)
+            // try
+            // {
+            //     // GameObject collider = Instantiate(Resources.Load("Constellations/Colliders/" + tmp[0])) as GameObject;
+            //     // collider.transform.SetParent(constelGroup.transform);
+            //     // collider.transform.localPosition = Vector3.zero;
+            //     // collider.transform.LookAt(cam.transform);
+                
+            // }
+            // catch { }
+            lineR.transform.SetParent(constelGroup.transform);
+            // ########################################
+            for (int j = 4; j < tmp.Length; j += 2)
             {
-                GameObject lineR = Instantiate(Resources.Load("ConstLine"), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+                points = new Vector3[2];
+                star = findRaDecByHipID(int.Parse(tmp[j]));
+                angle = SetPosition(star.ra, star.dec);
+                startingPos = cube.transform.position;
+                lineR = Instantiate(Resources.Load("ConstLine"), startingPos, Quaternion.identity) as GameObject;
                 lineR.transform.SetParent(constelGroup.transform);
-                Vector3[] points = new Vector3[2];
-                var star = findRaDecByHipID(int.Parse(tmp[j]));
-                var angle = SetPosition(star.ra, star.dec);
-                points[0] = cube.transform.position;
+                points[0] = cube.transform.position - startingPos;
                 star = findRaDecByHipID(int.Parse(tmp[j + 1]));
                 angle = SetPosition(star.ra, star.dec);
-                points[1] = cube.transform.position;
+                points[1] = cube.transform.position - startingPos;
                 lineR.GetComponent<LineRenderer>().SetPositions(points);
             }
+            AddColliderAroundChildren(constelGroup);
         }
+    }
+
+    private void AddColliderAroundChildren(GameObject assetModel)
+    {
+        var pos = assetModel.transform.localPosition;
+        var rot = assetModel.transform.localRotation;
+        var scale = assetModel.transform.localScale;
+
+        // need to clear out transforms while encapsulating bounds
+        assetModel.transform.localPosition = Vector3.zero;
+        assetModel.transform.localRotation = Quaternion.identity;
+        assetModel.transform.localScale = Vector3.one;
+
+        // start with root object's bounds
+        var bounds = new Bounds(Vector3.zero, Vector3.zero);
+        if (assetModel.transform.TryGetComponent<LineRenderer>(out var mainRenderer))
+        {
+            // as mentioned here https://forum.unity.com/threads/what-are-bounds.480975/
+            // new Bounds() will include 0,0,0 which you may not want to Encapsulate
+            // because the vertices of the mesh may be way off the model's origin
+            // so instead start with the first renderer bounds and Encapsulate from there
+            bounds = mainRenderer.bounds;
+        }
+
+        var descendants = assetModel.GetComponentsInChildren<Transform>();
+        foreach (Transform desc in descendants)
+        {
+            if (desc.TryGetComponent<LineRenderer>(out var childRenderer))
+            {
+                // use this trick to see if initialized to renderer bounds yet
+                // https://answers.unity.com/questions/724635/how-does-boundsencapsulate-work.html
+                if (bounds.extents == Vector3.zero)
+                    bounds = childRenderer.bounds;
+                bounds.Encapsulate(childRenderer.bounds);
+            }
+        }
+
+        var boxCol = assetModel.AddComponent<BoxCollider>();
+        boxCol.isTrigger = true;
+        boxCol.center = bounds.center - assetModel.transform.position;
+        boxCol.size = bounds.size + Vector3.one;
+
+        // restore transforms
+        assetModel.transform.localPosition = pos;
+        assetModel.transform.localRotation = rot;
+        assetModel.transform.localScale = scale;
     }
 
     private IEnumerator plotStar()
@@ -140,51 +211,51 @@ public class StarCalc : MonoBehaviour
             }
         }
         // North
-        cubeController.transform.rotation = Quaternion.Euler(new Vector3(0,-90,0));
+        cubeController.transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
         points[maxStars].position = cube.transform.position;
         points[maxStars].startColor = Color.red;
         points[maxStars].startSize = 0.1f;
 
-        cubeController.transform.rotation = Quaternion.Euler(new Vector3(-2,-90,0));
+        cubeController.transform.rotation = Quaternion.Euler(new Vector3(-2, -90, 0));
         nameText = Instantiate(Resources.Load("StarText"), cube.transform.position, Quaternion.LookRotation(cube.transform.position - cam.transform.position)) as GameObject;
         nameText.transform.SetParent(StarNames.transform);
-        nameText.GetComponent<TextMeshPro>().text = "North";
+        nameText.GetComponent<TextMeshPro>().text = "N";
         nameText.GetComponent<TextMeshPro>().fontSize += 2;
         nameText.name = "Name North";
         // South
-        cubeController.transform.rotation = Quaternion.Euler(new Vector3(0,90,0));
-        points[maxStars+1].position = cube.transform.position;
-        points[maxStars+1].startColor = Color.blue;
-        points[maxStars+1].startSize = 0.1f;
+        cubeController.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+        points[maxStars + 1].position = cube.transform.position;
+        points[maxStars + 1].startColor = Color.blue;
+        points[maxStars + 1].startSize = 0.1f;
 
-        cubeController.transform.rotation = Quaternion.Euler(new Vector3(-2,90,0));
+        cubeController.transform.rotation = Quaternion.Euler(new Vector3(-2, 90, 0));
         nameText = Instantiate(Resources.Load("StarText"), cube.transform.position, Quaternion.LookRotation(cube.transform.position - cam.transform.position)) as GameObject;
         nameText.transform.SetParent(StarNames.transform);
-        nameText.GetComponent<TextMeshPro>().text = "South";
+        nameText.GetComponent<TextMeshPro>().text = "S";
         nameText.GetComponent<TextMeshPro>().fontSize += 2;
         nameText.name = "Name South";
         // East
-        cubeController.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
-        points[maxStars+2].position = cube.transform.position;
-        points[maxStars+2].startColor = Color.yellow;
-        points[maxStars+2].startSize = 0.1f;
+        cubeController.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        points[maxStars + 2].position = cube.transform.position;
+        points[maxStars + 2].startColor = Color.yellow;
+        points[maxStars + 2].startSize = 0.1f;
 
-        cubeController.transform.rotation = Quaternion.Euler(new Vector3(-2,0,0));
+        cubeController.transform.rotation = Quaternion.Euler(new Vector3(-2, 0, 0));
         nameText = Instantiate(Resources.Load("StarText"), cube.transform.position, Quaternion.LookRotation(cube.transform.position - cam.transform.position)) as GameObject;
         nameText.transform.SetParent(StarNames.transform);
-        nameText.GetComponent<TextMeshPro>().text = "East";
+        nameText.GetComponent<TextMeshPro>().text = "E";
         nameText.GetComponent<TextMeshPro>().fontSize += 2;
         nameText.name = "Name East";
         // West
-        cubeController.transform.rotation = Quaternion.Euler(new Vector3(0,180,0));
-        points[maxStars+3].position = cube.transform.position;
-        points[maxStars+3].startColor = Color.green;
-        points[maxStars+3].startSize = 0.1f;
+        cubeController.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+        points[maxStars + 3].position = cube.transform.position;
+        points[maxStars + 3].startColor = Color.green;
+        points[maxStars + 3].startSize = 0.1f;
 
-        cubeController.transform.rotation = Quaternion.Euler(new Vector3(-2,180,0));
+        cubeController.transform.rotation = Quaternion.Euler(new Vector3(-2, 180, 0));
         nameText = Instantiate(Resources.Load("StarText"), cube.transform.position, Quaternion.LookRotation(cube.transform.position - cam.transform.position)) as GameObject;
         nameText.transform.SetParent(StarNames.transform);
-        nameText.GetComponent<TextMeshPro>().text = "West";
+        nameText.GetComponent<TextMeshPro>().text = "W";
         nameText.GetComponent<TextMeshPro>().fontSize += 2;
         nameText.name = "Name West";
         // #############################
