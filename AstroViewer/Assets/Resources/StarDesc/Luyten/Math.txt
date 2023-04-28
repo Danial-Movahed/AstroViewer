@@ -1,0 +1,4 @@
+Constellation: ?
+Magnitude: 9.87
+Distance: 12.40ly
+Ra/Dec: 07h 28m38.7s   +05°09'15.5"
