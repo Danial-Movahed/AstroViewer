@@ -95,15 +95,6 @@ public class StarCalc : MonoBehaviour
             constelGroup.name = tmp[0];
             constelGroup.tag = "Constellations";
             constelGroup.transform.SetParent(ConstLines.transform);
-            // try
-            // {
-            //     // GameObject collider = Instantiate(Resources.Load("Constellations/Colliders/" + tmp[0])) as GameObject;
-            //     // collider.transform.SetParent(constelGroup.transform);
-            //     // collider.transform.localPosition = Vector3.zero;
-            //     // collider.transform.LookAt(cam.transform);
-                
-            // }
-            // catch { }
             lineR.transform.SetParent(constelGroup.transform);
             // ########################################
             for (int j = 4; j < tmp.Length; j += 2)
@@ -121,6 +112,11 @@ public class StarCalc : MonoBehaviour
                 lineR.GetComponent<LineRenderer>().SetPositions(points);
             }
             AddColliderAroundChildren(constelGroup);
+            var ConstelName = Instantiate(Resources.Load("ConstelText"), constelGroup.GetComponent<BoxCollider>().center, Quaternion.identity) as GameObject;
+            ConstelName.GetComponent<TextMeshPro>().text = tmp[0];
+            ConstelName.transform.parent = constelGroup.transform;
+            ConstelName.transform.localPosition = ConstelName.transform.position;
+            ConstelName.transform.localRotation = Quaternion.LookRotation(cam.transform.position);
         }
     }
 

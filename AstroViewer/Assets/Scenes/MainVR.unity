@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 840499569}
-  m_IndirectSpecularColor: {r: 0.4408292, g: 0.48952252, b: 0.5696357, a: 1}
+  m_IndirectSpecularColor: {r: 0.44677734, g: 0.49617034, b: 0.5730763, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -6457,8 +6457,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   longitude: 51.3347
   latitude: 35.72
-  hour: 12
-  minutes: 33
+  hour: 15
+  minutes: 16
   timeSpeed: 1
   frameSteps: 1
   isRealtimeEnabled: 1
@@ -6531,7 +6531,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840499565}
-  m_LocalRotation: {x: -0.09673322, y: 0.82343894, z: -0.5392314, w: -0.14771748}
+  m_LocalRotation: {x: -0.21530014, y: 0.74015504, z: -0.2780277, w: -0.57316405}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8034,7 +8034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1860740227
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8731,8 +8731,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   longitude: 51.3347
   latitude: 35.7219
-  hour: 12
-  minutes: 33
+  hour: 15
+  minutes: 16
   timeSpeed: 1
   frameSteps: 1
   constellations:
