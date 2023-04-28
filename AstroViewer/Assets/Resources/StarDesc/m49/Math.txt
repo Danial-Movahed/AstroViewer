@@ -1,3 +1,0 @@
-Constellation: Virgo
-Magnitude: 12.13
-Ra/Dec 12h 30m58.5s   +07°52'15.8"

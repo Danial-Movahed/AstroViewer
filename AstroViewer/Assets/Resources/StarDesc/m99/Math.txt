@@ -1,3 +1,0 @@
-Constellation: Coma Berenices
-Magnitude: 9.81
-Ra/Dec 12h 20m01.3s   +14°17'12.9"

@@ -1,3 +1,0 @@
-Constellation: Ursa Major
-Magnitude: 6.94
-Ra/Dec 09h 57m28.3s   +68°57'35.2"

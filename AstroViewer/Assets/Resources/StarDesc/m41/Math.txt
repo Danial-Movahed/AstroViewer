@@ -1,3 +1,0 @@
-Constellation: Canis Major
-Magnitude: 4.50
-Ra/Dec 06h 47m00.1s   -20°47'02.7"

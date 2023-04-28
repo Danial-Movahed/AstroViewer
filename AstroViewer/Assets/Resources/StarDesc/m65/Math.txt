@@ -1,3 +1,0 @@
-Constellation: Loe
-Magnitude: 10.25
-Ra/Dec 11h 20m09.3s   +12°57'53.8"

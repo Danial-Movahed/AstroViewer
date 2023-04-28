@@ -1,3 +1,0 @@
-Constellation: Canser
-Magnitude: 6.88
-Ra/Dec 08h 52m34.0s   +11°42'47.2"

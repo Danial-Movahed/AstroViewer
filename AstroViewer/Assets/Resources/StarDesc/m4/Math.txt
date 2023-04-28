@@ -1,3 +1,0 @@
-Constellation: Scorpius
-Magnitude: 5.88
-Ra/Dec 16h 25m 00.9s  -26(Deg) 34' 47.8"

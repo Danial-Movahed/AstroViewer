@@ -1,3 +1,0 @@
-Constellation: Sagittarius
-Magnitude: 7.66
-Ra/Dec 18h 25m58.7s   -24°51'27.4"

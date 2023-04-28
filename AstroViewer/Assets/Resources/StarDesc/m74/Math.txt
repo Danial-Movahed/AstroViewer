@@ -1,3 +1,0 @@
-Constellation: Pisces
-Magnitude: 9.44
-Ra/Dec 01h 37m54.9s   +15°53'58.0"

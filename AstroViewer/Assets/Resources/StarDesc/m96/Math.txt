@@ -1,3 +1,0 @@
-Constellation: Leo
-Magnitude: 9.25
-Ra/Dec 10h 47m59.7s   +11°41'50.6"

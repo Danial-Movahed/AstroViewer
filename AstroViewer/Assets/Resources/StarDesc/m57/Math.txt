@@ -1,3 +1,0 @@
-Constellation: Lyra
-Magnitude: 8.75
-Ra/Dec 18h 54m27.0s   +33°03'09.3"

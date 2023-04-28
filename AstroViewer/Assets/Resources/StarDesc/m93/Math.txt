@@ -1,3 +1,0 @@
-Constellation: Puppis
-Magnitude: 6.19
-Ra/Dec 07h 45m28.5s   -23°54'55.9"
