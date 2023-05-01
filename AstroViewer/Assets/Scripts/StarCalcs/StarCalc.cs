@@ -41,8 +41,9 @@ public class StarCalc : MonoBehaviour
         public int hipID;
         public string color;
     }
-    public static int maxStars = 10109;
-    public star[] stardb = new star[119613];
+    public static int maxStars = 9998;
+    // public static int maxStars = 1;
+    public star[] stardb = new star[118066];
     public string[] constellations = new string[86];
     private ParticleSystem.Particle[] points = new ParticleSystem.Particle[maxStars + 4];
     public GameObject cube, cubeController;
@@ -50,6 +51,11 @@ public class StarCalc : MonoBehaviour
     public GameObject cam;
     public GameObject circle;
     public GameObject StarNames, ConstLines, StarColliders;
+    public void changeTimeDate(DateTime date)
+    {
+        time = date;
+        StartCoroutine(plotStar());
+    }
     private void setdb()
     {
         TextAsset theList = Resources.Load<TextAsset>("StarDatabase");
@@ -194,7 +200,6 @@ public class StarCalc : MonoBehaviour
             }
             if (stardb[i].name != "")
             {
-                // cubeController.transform.rotation = Quaternion.Euler(angle);
                 GameObject collider = Instantiate(Resources.Load("StarCollider"), cube.transform.position, Quaternion.identity) as GameObject;
                 collider.transform.SetParent(StarColliders.transform);
                 collider.name = stardb[i].name;

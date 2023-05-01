@@ -8,7 +8,7 @@ public class ConstellationAnimation : MonoBehaviour
     public int timeout = 0;
     IEnumerator checkTimeout()
     {
-        Debug.Log(timeout);
+
         if (timeout <= 0)
         {
             isShown = false;
@@ -24,7 +24,6 @@ public class ConstellationAnimation : MonoBehaviour
     }
     void CloseAnimation()
     {
-        Debug.Log("Closing!");
         for (int i = 0; i < transform.childCount; i++)
         {
             if(transform.GetChild(i).tag == "ConstelLine")
