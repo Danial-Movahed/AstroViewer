@@ -1,4 +1,0 @@
-Constellation: Serpens
-Magnitude: 2.80
-Distance: 73.96ly
-Ra/Dec: 15h 45m 23.7s   +06(Deg) 21' 03.3"
