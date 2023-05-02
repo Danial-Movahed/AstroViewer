@@ -21,6 +21,15 @@ for i in $(cat stars.txt); do
 		if [[ $(file Image.png | grep "1152 x 778") == "" ]]; then
 			echo "$i" >> /home/danial/checkVR/wrongImage.txt
 		fi
+		if [[ $(cat Type.txt) == "Blue Super Giant Star" ]]; then
+			echo "$i" >> /home/danial/checkVR/bluesuper.txt
+		fi
+		if [[ $(cat Type.txt) == "Blue supergiant star" ]]; then
+			echo "$i" >> /home/danial/checkVR/bluesuper.txt
+		fi
+		if [ ! -f Noriginpic.txt ]; then
+			echo "$i" >> /home/danial/checkVR/notUpdated.txt
+		fi
 		cd ..
 	fi
 done
