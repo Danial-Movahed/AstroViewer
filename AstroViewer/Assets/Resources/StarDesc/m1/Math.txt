@@ -1,3 +1,0 @@
-Constellation: Taurus
-Magnitude: 8.38
-Ra/Dec 05h 35m 54.7s  +22(Deg) 01' 49.9"

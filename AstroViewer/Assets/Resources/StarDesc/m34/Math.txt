@@ -1,3 +1,0 @@
-Constellation: Perseus
-Magnitude: 5.19
-Ra/Dec 02h 43m32.5s   +42°51'35.1"

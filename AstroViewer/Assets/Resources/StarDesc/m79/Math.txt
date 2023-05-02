@@ -1,3 +1,0 @@
-Constellation: Lepus
-Magnitude: 8.13
-Ra/Dec 05h 25m06.8s   -24°30'21.0"

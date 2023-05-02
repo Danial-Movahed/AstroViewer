@@ -1,3 +1,0 @@
-Constellation: Aquarius
-Magnitude: 8.94
-Ra/Dec 20h 54m43.4s   -12°27'04.2"

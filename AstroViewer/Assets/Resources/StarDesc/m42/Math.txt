@@ -1,3 +1,0 @@
-Constellation: Orion
-Magnitude: 4.00
-Ra/Dec 05h 36m24.6s   -05°22'40.0"

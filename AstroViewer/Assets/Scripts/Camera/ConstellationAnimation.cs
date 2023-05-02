@@ -8,7 +8,7 @@ public class ConstellationAnimation : MonoBehaviour
     public int timeout = 0;
     IEnumerator checkTimeout()
     {
-        Debug.Log(timeout);
+
         if (timeout <= 0)
         {
             isShown = false;
@@ -24,14 +24,18 @@ public class ConstellationAnimation : MonoBehaviour
     }
     void CloseAnimation()
     {
-        Debug.Log("Closing!");
         for (int i = 0; i < transform.childCount; i++)
         {
-            try
+            if(transform.GetChild(i).tag == "ConstelLine")
             {
                 transform.GetChild(i).GetComponent<Animator>().Play("LineAnimationClose");
+                continue;
             }
-            catch { }
+            if(transform.GetChild(i).tag == "ConstelName")
+            {
+                transform.GetChild(i).GetComponent<Animator>().Play("ConstelTextHide");
+                continue;
+            }
         }
     }
     public void ShowAnimation()
@@ -41,11 +45,16 @@ public class ConstellationAnimation : MonoBehaviour
             isShown = true;
             for (int i = 0; i < transform.childCount; i++)
             {
-                try
+                if(transform.GetChild(i).tag == "ConstelLine")
                 {
                     transform.GetChild(i).GetComponent<Animator>().Play("LineAnimationOpen");
+                    continue;
                 }
-                catch { }
+                if(transform.GetChild(i).tag == "ConstelName")
+                {
+                    transform.GetChild(i).GetComponent<Animator>().Play("ConstelTextShow");
+                    continue;
+                }
             }
             timeout = 1;
             StartCoroutine(checkTimeout());

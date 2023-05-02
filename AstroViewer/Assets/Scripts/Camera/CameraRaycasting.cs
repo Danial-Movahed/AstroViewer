@@ -33,7 +33,6 @@ public class CameraRaycasting : MonoBehaviour
                 }
                 else if (!locking)
                 {
-                    Debug.Log("Found star!");
                     starHitLoading = h.collider.gameObject;
                     locking = true;
                     timestamp = Time.time + lockTime;
@@ -41,7 +40,6 @@ public class CameraRaycasting : MonoBehaviour
             }
             if(!Array.Exists(hit, x => x.collider.gameObject.Equals(starHitLoading)))
             {
-                Debug.Log("Dead!");
                 locking = false;
                 starHitLoading = null;
             }

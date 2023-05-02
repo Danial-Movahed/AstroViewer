@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4137770471606231826}
   m_Layer: 0
   m_Name: ConstLine
-  m_TagString: Untagged
+  m_TagString: ConstelLine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1,3 +1,0 @@
-Constellation: Auriga
-Magnitude: 5.59
-Ra/Dec 05h 53m47.9s   +32°33'36.6"
