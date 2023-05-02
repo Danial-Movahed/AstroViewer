@@ -192,7 +192,44 @@ public class MenuController : MonoBehaviour
     }
     void toggleConstelAnim()
     {
-
+        if (constelAnimToggle.isOn)
+        {
+            for (int i = 0; i < ConstLines.transform.childCount; i++)
+            {
+                for (int j=0;j<ConstLines.transform.GetChild(i).transform.childCount;j++)
+                {
+                    if (ConstLines.transform.GetChild(i).transform.GetChild(j).tag == "ConstelLine")
+                    {
+                        ConstLines.transform.GetChild(i).transform.GetChild(j).GetComponent<Animator>().Play("LineAnimationClose");
+                        continue;
+                    }
+                    if (ConstLines.transform.GetChild(i).transform.GetChild(j).tag == "ConstelName")
+                    {
+                        ConstLines.transform.GetChild(i).transform.GetChild(j).GetComponent<Animator>().Play("ConstelTextHide");
+                        continue;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < ConstLines.transform.childCount; i++)
+            {
+                for (int j=0;j<ConstLines.transform.GetChild(i).transform.childCount;j++)
+                {
+                    if (ConstLines.transform.GetChild(i).transform.GetChild(j).tag == "ConstelLine")
+                    {
+                        ConstLines.transform.GetChild(i).transform.GetChild(j).GetComponent<Animator>().Play("LineAnimationOpen");
+                        continue;
+                    }
+                    if (ConstLines.transform.GetChild(i).transform.GetChild(j).tag == "ConstelName")
+                    {
+                        ConstLines.transform.GetChild(i).transform.GetChild(j).GetComponent<Animator>().Play("ConstelTextShow");
+                        continue;
+                    }
+                }
+            }
+        }
     }
     void saveApply()
     {

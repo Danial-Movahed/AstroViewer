@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 1c4b825e4e4fce4039898f980e6c6ed3
+=======
+guid: 0026bb8666a728e4f96c86cec7c542cb
+>>>>>>> 94cc75c1e2ea98f240eb515cf300613c9b96eea5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -39,10 +43,17 @@ TextureImporter:
     wrapU: 0
     wrapV: 0
     wrapW: 0
+<<<<<<< HEAD
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
+=======
+  nPOTScale: 1
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 0
+>>>>>>> 94cc75c1e2ea98f240eb515cf300613c9b96eea5
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -53,7 +64,11 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
+<<<<<<< HEAD
   textureType: 8
+=======
+  textureType: 0
+>>>>>>> 94cc75c1e2ea98f240eb515cf300613c9b96eea5
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -113,13 +128,32 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<< HEAD
+=======
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+>>>>>>> 94cc75c1e2ea98f240eb515cf300613c9b96eea5
   spriteSheet:
     serializedVersion: 2
     sprites: []
     outline: []
     physicsShape: []
     bones: []
+<<<<<<< HEAD
     spriteID: 5e97eb03825dee720800000000000000
+=======
+    spriteID: 
+>>>>>>> 94cc75c1e2ea98f240eb515cf300613c9b96eea5
     internalID: 0
     vertices: []
     indices: 
