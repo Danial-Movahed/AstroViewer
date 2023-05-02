@@ -80,7 +80,7 @@ public class StarCalc : MonoBehaviour
         return star;
     }
 
-    private void plotConstellations()
+    public void plotConstellations()
     {
         for (int i = 0; i < 86; i++)
         {
