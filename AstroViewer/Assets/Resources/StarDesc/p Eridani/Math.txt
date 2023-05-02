@@ -1,0 +1,4 @@
+Constellation: Erdinus
+Magnitude: 5.88
+Distance: 25.51 ly
+Ra/Dec: 01h 40m 38.4s  -56° 04' 41.8""
