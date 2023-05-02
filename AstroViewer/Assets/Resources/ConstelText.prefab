@@ -110,7 +110,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16580478
+    rgba: 4294770558
   m_fontColor: {r: 0.495283, g: 1, b: 0.9866777, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.1931827, y: -0.050726898, z: -0.20489347, w: -0.07351909}
+  m_margin: {x: -0.8079697, y: -0.050726898, z: -0.80716634, w: -0.07351909}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

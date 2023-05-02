@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:AstroViewer/Assets/DateTimePicker.meta
+guid: 79a409d34065039428bb443251596687
+folderAsset: yes
+DefaultImporter:
+========
 guid: daa7e69e181203a85a50c2bef4ef13ee
 PrefabImporter:
+>>>>>>>> d0d763d63e64033020e3708063d0f9b0d40f6c45:AstroViewer/Assets/Resources/ConstelText.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

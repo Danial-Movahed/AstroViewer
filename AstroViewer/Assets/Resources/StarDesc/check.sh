@@ -18,6 +18,9 @@ for i in $(cat stars.txt); do
 		if [ ! -f Type.txt ]; then
 			echo "$i" >> /home/danial/checkVR/missingTypeTxtNames.txt
 		fi
+		if [[ $(file Image.png | grep "1152 x 778") == "" ]]; then
+			echo "$i" >> /home/danial/checkVR/wrongImage.txt
+		fi
 		cd ..
 	fi
 done

@@ -41,7 +41,7 @@ public class StarCalc : MonoBehaviour
         public int hipID;
         public string color;
     }
-    public static int maxStars = 9998;
+    public static int maxStars = 10109;
     // public static int maxStars = 1;
     public star[] stardb = new star[118066];
     public string[] constellations = new string[86];
@@ -200,9 +200,12 @@ public class StarCalc : MonoBehaviour
             }
             if (stardb[i].name != "")
             {
-                GameObject collider = Instantiate(Resources.Load("StarCollider"), cube.transform.position, Quaternion.identity) as GameObject;
-                collider.transform.SetParent(StarColliders.transform);
-                collider.name = stardb[i].name;
+                if(i < 9998)
+                {
+                    GameObject collider = Instantiate(Resources.Load("StarCollider"), cube.transform.position, Quaternion.identity) as GameObject;
+                    collider.transform.SetParent(StarColliders.transform);
+                    collider.name = stardb[i].name;
+                }
                 angle.x -= 1;
                 cubeController.transform.rotation = Quaternion.Euler(angle);
                 nameText = Instantiate(Resources.Load("StarText"), cube.transform.position, Quaternion.LookRotation(cube.transform.position - cam.transform.position)) as GameObject;

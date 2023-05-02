@@ -12,6 +12,7 @@ public class MenuController : MonoBehaviour
     public GameObject ui,vrBtn;
     public GameObject StarNames,ConstLines,StarColliders;
     public GameObject PS, eliptic;
+    public TouchRotationControl trc;
     public Sun sun;
     // public TextMeshProUGUI sunTimesText;
     public MenuBtnAnimationController menuBtnAnimationController;
@@ -30,6 +31,10 @@ public class MenuController : MonoBehaviour
             eclipticToggle.isOn = true;
         else
             eclipticToggle.isOn = false;
+        if(PlayerPrefs.GetString("arEnabled", "true") == "true")
+            trc.isAREnabled = true;
+        else
+            trc.isAREnabled = false;
         // if(PlayerPrefs.GetString("realTimeSunToggle","true") == "true")
         // {
         //     realTimeSunToggle.isOn = true;
