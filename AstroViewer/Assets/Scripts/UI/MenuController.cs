@@ -5,15 +5,14 @@ using TMPro;
 using Entropedia;
 public class MenuController : MonoBehaviour
 {
-    // public Toggle constToggle,eclipticToggle,defaultvrToggle,realTimeSunToggle;
-    public Toggle constToggle, eclipticToggle, defaultvrToggle, alwaysShowMenuToggle, arModeToggle, showTerrainToggle, constelPictureToggle, constelAnimToggle;
-    public Button hamburger, changeTimeBtn;
+    public Toggle constToggle, eclipticToggle, defaultvrToggle, realtimeToggle, arModeToggle, showTerrainToggle, constelPictureToggle, constelAnimToggle;
+    public Button changeTimeBtn;
     public GameObject ui, vrBtn, StarNames, ConstLines, StarColliders, PS, eliptic, changeTimeUi, terrain;
     public TouchRotationControl trc;
+    private bool isUiOpen = false, isTimeChangeUiOpen = false;
     public Sun sun;
     public StarCalc starCalc;
-    // public TextMeshProUGUI sunTimesText;
-    public MenuBtnAnimationController menuBtnAnimationController, changeTimeUiAnimationController;
+    public GameObject hamburger;
 
     void Start()
     {
@@ -33,10 +32,14 @@ public class MenuController : MonoBehaviour
             trc.isAREnabled = true;
         else
             trc.isAREnabled = false;
-        if (PlayerPrefs.GetString("alwaysShowMenuToggle", "true") == "true")
-            alwaysShowMenuToggle.isOn = true;
+        if (PlayerPrefs.GetString("realtimeToggle", "true") == "true")
+        {
+            realtimeToggle.isOn = true;
+            sun.SetDate(new DateTime(2023, 1, 1, 0, 0, 1));
+            sun.SetPosition();
+        }
         else
-            alwaysShowMenuToggle.isOn = false;
+            realtimeToggle.isOn = false;
         if (PlayerPrefs.GetString("showTerrainToggle", "true") == "true")
             showTerrainToggle.isOn = true;
         else
@@ -49,23 +52,6 @@ public class MenuController : MonoBehaviour
             constelAnimToggle.isOn = true;
         else
             constelAnimToggle.isOn = false;
-
-        // if(PlayerPrefs.GetString("realTimeSunToggle","true") == "true")
-        // {
-        //     realTimeSunToggle.isOn = true;
-        //     sun.isRealtimeEnabled = true;
-        //     SunTimeSlider.SetActive(false);
-        // }
-        // else
-        // {
-        //     realTimeSunToggle.isOn = false;
-        //     sun.isRealtimeEnabled = false;
-        //     SunTimeSlider.SetActive(true);
-        //     setupTimeSliderText();
-        // }
-        // SunTimeSlider.GetComponent<Slider>().onValueChanged.AddListener(delegate {
-        //     sunChangeTime();
-        // });
         eclipticToggle.onValueChanged.AddListener(delegate
         {
             toggleEclipticCircle();
@@ -78,9 +64,9 @@ public class MenuController : MonoBehaviour
         {
             toggleDefaultMode();
         });
-        alwaysShowMenuToggle.onValueChanged.AddListener(delegate
+        realtimeToggle.onValueChanged.AddListener(delegate
         {
-            toggleShowMenu();
+            toggleRealtimeSun();
         });
         arModeToggle.onValueChanged.AddListener(delegate
         {
@@ -98,11 +84,7 @@ public class MenuController : MonoBehaviour
         {
             toggleConstelAnim();
         });
-        // realTimeSunToggle.onValueChanged.AddListener(delegate {
-        //     setupTimeSliderText();
-        //     saveApply();
-        // });
-        hamburger.onClick.AddListener(delegate
+        hamburger.GetComponent<Button>().onClick.AddListener(delegate
         {
             toggleUiVis();
         });
@@ -111,22 +93,6 @@ public class MenuController : MonoBehaviour
             toggleChangeTimeUIVis();
         });
     }
-    // void setupTimeSliderText()
-    // {
-    //     sun.minutes = 0;
-    //     sun.hour = 1;
-    //     sun.SetTime(1,0);
-    //     sun.SetPosition();
-    //     sunTimeText.text = "Sun Time: 1:00";
-    // }
-    // void sunChangeTime()
-    // {
-    //     sun.minutes = 0;
-    //     sun.hour = (int)SunTimeSlider.GetComponent<Slider>().value;
-    //     sun.SetTime((int)SunTimeSlider.GetComponent<Slider>().value,0);
-    //     sun.SetPosition();
-    //     sunTimeText.text = "Sun Time: "+((int)SunTimeSlider.GetComponent<Slider>().value).ToString()+":00";
-    // }
     void toggleEclipticCircle()
     {
         eliptic.SetActive(eclipticToggle.isOn);
@@ -134,6 +100,7 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetString("eclipticToggle", "true");
         else
             PlayerPrefs.SetString("eclipticToggle", "false");
+        PlayerPrefs.Save();
     }
     void toggleConstellations()
     {
@@ -150,6 +117,7 @@ public class MenuController : MonoBehaviour
             }
             PlayerPrefs.SetString("constToggle", "false");
         }
+        PlayerPrefs.Save();
     }
     void toggleDefaultMode()
     {
@@ -157,13 +125,23 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetString("defaultMode", "true");
         else
             PlayerPrefs.SetString("defaultMode", "false");
+        PlayerPrefs.Save();
     }
-    void toggleShowMenu()
+    void toggleRealtimeSun()
     {
-        if (defaultvrToggle.isOn)
-            PlayerPrefs.SetString("defaultMode", "true");
+        if (realtimeToggle.isOn)
+        {
+            PlayerPrefs.SetString("realtimeToggle", "true");
+            sun.SetDate(starCalc.time);
+            sun.SetPosition();
+        }
         else
-            PlayerPrefs.SetString("defaultMode", "false");
+        {
+            PlayerPrefs.SetString("realtimeToggle", "false");
+            sun.SetDate(new DateTime(2023, 1, 1, 0, 0, 1));
+            sun.SetPosition();
+        }
+        PlayerPrefs.Save();
     }
     void toggleArMode()
     {
@@ -177,6 +155,7 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetString("arEnabled", "false");
             trc.isAREnabled = false;
         }
+        PlayerPrefs.Save();
     }
     void toggleTerrainVis()
     {
@@ -185,6 +164,7 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetString("showTerrainToggle", "true");
         else
             PlayerPrefs.SetString("showTerrainToggle", "false");
+        PlayerPrefs.Save();
     }
     void toggleConstPicture()
     {
@@ -193,10 +173,15 @@ public class MenuController : MonoBehaviour
     void toggleConstelAnim()
     {
         if (constelAnimToggle.isOn)
+            PlayerPrefs.SetString("constelAnimToggle", "true");
+        else
+            PlayerPrefs.SetString("constelAnimToggle", "false");
+        PlayerPrefs.Save();
+        if (constelAnimToggle.isOn)
         {
             for (int i = 0; i < ConstLines.transform.childCount; i++)
             {
-                for (int j=0;j<ConstLines.transform.GetChild(i).transform.childCount;j++)
+                for (int j = 0; j < ConstLines.transform.GetChild(i).transform.childCount; j++)
                 {
                     if (ConstLines.transform.GetChild(i).transform.GetChild(j).tag == "ConstelLine")
                     {
@@ -215,7 +200,7 @@ public class MenuController : MonoBehaviour
         {
             for (int i = 0; i < ConstLines.transform.childCount; i++)
             {
-                for (int j=0;j<ConstLines.transform.GetChild(i).transform.childCount;j++)
+                for (int j = 0; j < ConstLines.transform.GetChild(i).transform.childCount; j++)
                 {
                     if (ConstLines.transform.GetChild(i).transform.GetChild(j).tag == "ConstelLine")
                     {
@@ -231,71 +216,40 @@ public class MenuController : MonoBehaviour
             }
         }
     }
-    void saveApply()
-    {
-        ParticleSystem.Particle[] points = new ParticleSystem.Particle[10109];
-        PS.GetComponent<ParticleSystem>().SetParticles(points, points.Length);
-        eliptic.SetActive(false);
-        for (var i = ConstLines.transform.childCount - 1; i >= 0; i--)
-        {
-            UnityEngine.Object.Destroy(ConstLines.transform.GetChild(i).gameObject);
-        }
-        for (var i = StarNames.transform.childCount - 1; i >= 0; i--)
-        {
-            UnityEngine.Object.Destroy(StarNames.transform.GetChild(i).gameObject);
-        }
-        for (var i = StarColliders.transform.childCount - 1; i >= 0; i--)
-        {
-            UnityEngine.Object.Destroy(StarColliders.transform.GetChild(i).gameObject);
-        }
-        if (defaultvrToggle.isOn)
-            PlayerPrefs.SetString("defaultMode", "true");
-        else
-            PlayerPrefs.SetString("defaultMode", "false");
-
-        if (eclipticToggle.isOn)
-            PlayerPrefs.SetString("eclipticToggle", "true");
-        else
-            PlayerPrefs.SetString("eclipticToggle", "false");
-
-        if (constToggle.isOn)
-            PlayerPrefs.SetString("constToggle", "true");
-        else
-            PlayerPrefs.SetString("constToggle", "false");
-
-        // if(realTimeSunToggle.isOn)
-        // {
-        //     PlayerPrefs.SetString("realTimeSunToggle","true");
-        //     SunTimeSlider.SetActive(false);
-        //     sun.isRealtimeEnabled = true;
-        //     sun.SetDate(new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day,DateTime.Now.Hour,DateTime.Now.Minute,0));
-        //     sun.SetPosition();
-        // }
-        // else
-        // {
-        //     PlayerPrefs.SetString("realTimeSunToggle","false");
-        //     SunTimeSlider.SetActive(true);
-        //     sun.isRealtimeEnabled = false;
-        // }
-        PlayerPrefs.Save();
-
-        GameObject.Find("StarRotator").GetComponent<StarCalc>().StartCoroutine("plotStar");
-    }
     void toggleUiVis()
     {
-        if (!ui.activeSelf)
-            menuBtnAnimationController.PlayAnimation("MenuBtnOpen");
+        if (!isUiOpen)
+        {
+            vrBtn.SetActive(false);
+            hamburger.GetComponent<Animator>().Play("MenuBtnOpen");
+            ui.GetComponent<Animator>().Play("MenuUIOpen");
+            isUiOpen = true;
+        }
         else
-            menuBtnAnimationController.PlayAnimation("MenuBtnClose");
-        ui.SetActive(!ui.activeSelf);
-        vrBtn.SetActive(!vrBtn.activeSelf);
+        {
+            if (isTimeChangeUiOpen)
+            {
+                changeTimeUi.GetComponent<Animator>().Play("TimeUiClose");
+                isTimeChangeUiOpen = false;
+            }
+            ui.GetComponent<Animator>().Play("MenuUIClose");
+            hamburger.GetComponent<Animator>().Play("MenuBtnClose");
+            isUiOpen = false;
+            vrBtn.SetActive(true);
+        }
     }
     void toggleChangeTimeUIVis()
     {
-        if (!changeTimeUi.activeSelf)
-            changeTimeUiAnimationController.PlayAnimation("ChangeTimeUiOpen");
+        if (!isTimeChangeUiOpen)
+        {
+            changeTimeUi.GetComponent<Animator>().Play("TimeUiOpen");
+            isTimeChangeUiOpen = true;
+        }
         else
-            changeTimeUiAnimationController.PlayAnimation("ChangeTimeUiClose");
-        changeTimeUi.SetActive(!changeTimeUi.activeSelf);
+        {
+            changeTimeUi.GetComponent<Animator>().Play("TimeUiClose");
+            isTimeChangeUiOpen = false;
+        }
+
     }
 }

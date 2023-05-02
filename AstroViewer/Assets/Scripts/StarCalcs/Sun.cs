@@ -16,14 +16,6 @@ namespace Entropedia
         [SerializeField]
         float latitude;
 
-        [SerializeField]
-        [Range(0, 24)]
-        public int hour;
-
-        [SerializeField]
-        [Range(0, 60)]
-        public int minutes;
-
         DateTime time;
         Light light;
 
@@ -35,15 +27,6 @@ namespace Entropedia
         int frameStep;
 
         [SerializeField]
-        DateTime date;
-
-        public bool isRealtimeEnabled = true;
-
-        public void SetTime(int hour, int minutes) {
-            this.hour = hour;
-            this.minutes = minutes;            
-            OnValidate();
-        }
 
         public void SetLocation(float longitude, float latitude){
           this.longitude = longitude;
@@ -51,10 +34,7 @@ namespace Entropedia
         }
 
         public void SetDate(DateTime dateTime){
-         this.hour = dateTime.Hour;
-         this.minutes = dateTime.Minute;
-         this.date = dateTime.Date;
-         OnValidate();
+         this.time = dateTime;
         }
 
         public void SetUpdateSteps(int i) {
@@ -67,31 +47,8 @@ namespace Entropedia
 
         private void Awake()
         {
-
             light = GetComponent<Light>();
             time = DateTime.Now;
-            hour = time.Hour;
-            minutes = time.Minute;
-            date = time.Date;
-        }
-
-        private void OnValidate()
-        {
-            time = date + new TimeSpan(hour, minutes, 0);
-
-            Debug.Log(time);
-        }
-
-        private void Update()
-        {
-            if(isRealtimeEnabled)
-            {
-                time = time.AddSeconds(timeSpeed * Time.deltaTime);
-                if (frameStep==0) {
-                    SetPosition();
-                }
-                frameStep = (frameStep + 1) % frameSteps;
-            }
         }
 
         public void SetPosition()

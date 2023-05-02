@@ -11,16 +11,7 @@ public class StarCalc : MonoBehaviour
 
     [SerializeField]
     float latitude;
-
-    [SerializeField]
-    [Range(0, 24)]
-    public int hour;
-
-    [SerializeField]
-    [Range(0, 60)]
-    public int minutes;
-
-    DateTime time;
+    public DateTime time;
 
     [SerializeField]
     float timeSpeed = 1;
@@ -28,9 +19,6 @@ public class StarCalc : MonoBehaviour
     [SerializeField]
     int frameSteps = 1;
     int frameStep;
-
-    [SerializeField]
-    DateTime date;
 
     public struct star
     {
@@ -283,13 +271,6 @@ public class StarCalc : MonoBehaviour
         yield return 0;
     }
 
-    public void SetTime(int hour, int minutes)
-    {
-        this.hour = hour;
-        this.minutes = minutes;
-        OnValidate();
-    }
-
     public void SetLocation(float longitude, float latitude)
     {
         this.longitude = longitude;
@@ -298,10 +279,7 @@ public class StarCalc : MonoBehaviour
 
     public void SetDate(DateTime dateTime)
     {
-        this.hour = dateTime.Hour;
-        this.minutes = dateTime.Minute;
-        this.date = dateTime.Date;
-        OnValidate();
+        this.time = dateTime;
     }
 
     public void SetUpdateSteps(int i)
@@ -318,27 +296,8 @@ public class StarCalc : MonoBehaviour
     {
         setdb();
         time = DateTime.Now;
-        hour = time.Hour;
-        minutes = time.Minute;
-        date = time.Date;
         StartCoroutine("plotStar");
     }
-
-    private void OnValidate()
-    {
-        time = date + new TimeSpan(hour, minutes, 0);
-
-        Debug.Log(time);
-    }
-
-    // private void Update()
-    // {
-    //     time = time.AddSeconds(timeSpeed * Time.deltaTime);
-    //     if (frameStep==0) {
-    //         SetPosition();
-    //     }
-    //     frameStep = (frameStep + 1) % frameSteps;
-    // }
 
     Vector3 SetPosition(double rightAscension, double declination)
     {
