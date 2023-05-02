@@ -91,6 +91,8 @@ public class StarCalc : MonoBehaviour
             var angle = SetPosition(star.ra, star.dec);
             var startingPos = cube.transform.position;
             GameObject lineR = Instantiate(Resources.Load("ConstLine"), startingPos, Quaternion.identity) as GameObject;
+            if (PlayerPrefs.GetString("constelAnimToggle","true") == "false")
+                lineR.GetComponent<Animator>().GetComponent<Animator>().Play("LineAnimationOpen");
             points[0] = cube.transform.position - startingPos;
             star = findRaDecByHipID(int.Parse(tmp[3]));
             angle = SetPosition(star.ra, star.dec);
@@ -110,6 +112,8 @@ public class StarCalc : MonoBehaviour
                 angle = SetPosition(star.ra, star.dec);
                 startingPos = cube.transform.position;
                 lineR = Instantiate(Resources.Load("ConstLine"), startingPos, Quaternion.identity) as GameObject;
+                if (PlayerPrefs.GetString("constelAnimToggle","true") == "false")
+                    lineR.GetComponent<Animator>().GetComponent<Animator>().Play("LineAnimationOpen");
                 lineR.transform.SetParent(constelGroup.transform);
                 points[0] = cube.transform.position - startingPos;
                 star = findRaDecByHipID(int.Parse(tmp[j + 1]));
@@ -119,6 +123,8 @@ public class StarCalc : MonoBehaviour
             }
             AddColliderAroundChildren(constelGroup);
             var ConstelName = Instantiate(Resources.Load("ConstelText"), constelGroup.GetComponent<BoxCollider>().center, Quaternion.identity) as GameObject;
+            if (PlayerPrefs.GetString("constelAnimToggle","true") == "false")
+                ConstelName.GetComponent<Animator>().GetComponent<Animator>().Play("ConstelTextShow");
             ConstelName.GetComponent<TextMeshPro>().text = tmp[0];
             ConstelName.transform.parent = constelGroup.transform;
             ConstelName.transform.localPosition = ConstelName.transform.position;

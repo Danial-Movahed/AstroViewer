@@ -26,12 +26,12 @@ public class ConstellationAnimation : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            if(transform.GetChild(i).tag == "ConstelLine")
+            if (transform.GetChild(i).tag == "ConstelLine")
             {
                 transform.GetChild(i).GetComponent<Animator>().Play("LineAnimationClose");
                 continue;
             }
-            if(transform.GetChild(i).tag == "ConstelName")
+            if (transform.GetChild(i).tag == "ConstelName")
             {
                 transform.GetChild(i).GetComponent<Animator>().Play("ConstelTextHide");
                 continue;
@@ -40,17 +40,19 @@ public class ConstellationAnimation : MonoBehaviour
     }
     public void ShowAnimation()
     {
-        if(!isShown)
+        if (PlayerPrefs.GetString("constelAnimToggle", "true") == "false")
+            return;
+        if (!isShown)
         {
             isShown = true;
             for (int i = 0; i < transform.childCount; i++)
             {
-                if(transform.GetChild(i).tag == "ConstelLine")
+                if (transform.GetChild(i).tag == "ConstelLine")
                 {
                     transform.GetChild(i).GetComponent<Animator>().Play("LineAnimationOpen");
                     continue;
                 }
-                if(transform.GetChild(i).tag == "ConstelName")
+                if (transform.GetChild(i).tag == "ConstelName")
                 {
                     transform.GetChild(i).GetComponent<Animator>().Play("ConstelTextShow");
                     continue;
