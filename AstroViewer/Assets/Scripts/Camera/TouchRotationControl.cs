@@ -31,10 +31,8 @@ public class TouchRotationControl : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount == 2 && Input.GetTouch(0).phase == TouchPhase.Began && Input.GetTouch(1).phase == TouchPhase.Began)
-        {
-
-        }
+        if (isAREnabled)
+            return;
 
         if (Input.touchCount == 2 && Input.GetTouch(0).phase == TouchPhase.Moved && Input.GetTouch(1).phase == TouchPhase.Moved)
         {
@@ -65,8 +63,6 @@ public class TouchRotationControl : MonoBehaviour
             }
 
         }
-        if (isAREnabled)
-            return;
         if (Input.touchCount > 0)
         {
             //Touch began, save position
