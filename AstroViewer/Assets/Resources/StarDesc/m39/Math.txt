@@ -1,0 +1,3 @@
+Constellation: Cygnus
+Magnitude: 4.59
+Ra/Dec 21h 32m36.8s   +48°31'46.9"

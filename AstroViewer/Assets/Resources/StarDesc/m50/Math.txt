@@ -1,0 +1,3 @@
+Constellation: Monoceros
+Magnitude: 5.88
+Ra/Dec 07h 03m53.8s   -08°22'24.4"

@@ -1,0 +1,3 @@
+Constellation: Serpens
+Magnitude: 5.94
+Ra/Dec 15h 19m 44.3s  +01(Deg) 59' 38.9"

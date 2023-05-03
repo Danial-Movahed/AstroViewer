@@ -1,0 +1,3 @@
+Constellation: Hydra
+Magnitude: 5.78
+Ra/Dec 08h 14m51.4s   -05°49'18.3"

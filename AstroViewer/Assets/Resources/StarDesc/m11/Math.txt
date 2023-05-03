@@ -1,0 +1,3 @@
+Constellation: Scutum
+Magnitude: 5.78
+Ra/Dec 18h 52m19.2s   -06°14'42.3"

@@ -1,0 +1,3 @@
+Constellation: Cassiopeia
+Magnitude: 7.38
+Ra/Dec 01h 34m52.5s   +60°46'01.8"

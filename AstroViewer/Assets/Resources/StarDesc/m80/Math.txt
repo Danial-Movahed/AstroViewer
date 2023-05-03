@@ -1,0 +1,3 @@
+Constellation: Scorius
+Magnitude: 7.84
+Ra/Dec 16h 18m26.3s   -23°02'03.0"

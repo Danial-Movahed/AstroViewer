@@ -1,0 +1,3 @@
+Constellation: Ophiuchus
+Magnitude: 7.38
+Ra/Dec 17h 02m41.9s   -30°08'47.4"
