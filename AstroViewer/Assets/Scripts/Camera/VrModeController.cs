@@ -35,6 +35,7 @@ public class VrModeController : MonoBehaviour
     public GameObject compassImage;
     public GameObject menuBtn;
     public GameObject vrbtn;
+    public GameObject ui,timeChangeUi;
 
     // Main camera from the scene.
     private Camera _mainCamera;
@@ -67,6 +68,7 @@ public class VrModeController : MonoBehaviour
     public void Start()
     {
         // Saves the main camera from the scene.
+        Application.targetFrameRate = 240;
         _mainCamera = Camera.main;
 
         // Configures the app to not shut down the screen and sets the brightness to maximum.
@@ -120,6 +122,8 @@ public class VrModeController : MonoBehaviour
     /// </summary>
     private void EnterVR()
     {
+        ui.SetActive(false);
+        timeChangeUi.SetActive(false);   
         StartCoroutine(StartXR());
         if (Api.HasNewDeviceParams())
         {
@@ -132,6 +136,8 @@ public class VrModeController : MonoBehaviour
     /// </summary>
     private void ExitVR()
     {
+        ui.SetActive(true);
+        timeChangeUi.SetActive(true);
         StopXR();
     }
 
@@ -184,6 +190,5 @@ public class VrModeController : MonoBehaviour
         compassImage.SetActive(true);
         menuBtn.SetActive(true);
         vrbtn.SetActive(true);
-        Application.targetFrameRate = 240;
     }
 }

@@ -114,9 +114,7 @@ public class StarCalc : MonoBehaviour
             if (PlayerPrefs.GetString("constelAnimToggle","true") == "false")
                 ConstelName.GetComponent<Animator>().GetComponent<Animator>().Play("ConstelTextShow");
             ConstelName.GetComponent<TextMeshPro>().text = tmp[0];
-            ConstelName.transform.parent = constelGroup.transform;
-            ConstelName.transform.localPosition = ConstelName.transform.position;
-            ConstelName.transform.localRotation = Quaternion.LookRotation(cam.transform.position);
+            ConstelName.transform.SetParent(constelGroup.transform,false);
         }
     }
 
@@ -166,7 +164,7 @@ public class StarCalc : MonoBehaviour
         assetModel.transform.localScale = scale;
     }
 
-    private IEnumerator plotStar()
+    public IEnumerator plotStar()
     {
         GameObject nameText;
         for (int i = 0; i < maxStars; i++)

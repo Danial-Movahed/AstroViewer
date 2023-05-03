@@ -18,13 +18,15 @@ public class Gyroscope : MonoBehaviour
     void Update()
     {
         var corrected = _neutralizer * GetUprightAttitude();
-        c.transform.rotation = corrected;
         if(Application.isEditor)
             return;
-        if(XRGeneralSettings.Instance.Manager.isInitializationComplete)
-            return;
+        if(!XRGeneralSettings.Instance.Manager.isInitializationComplete)
+            compassImage.transform.localRotation = Quaternion.Euler(0,0,corrected.eulerAngles.y);
         if(PlayerPrefs.GetString("arEnabled", "true") != "true")
+        {
+            Debug.Log("Nope!");
             return;
-        compassImage.transform.localRotation = Quaternion.Euler(0,0,corrected.eulerAngles.y);
+        }
+        c.transform.rotation = corrected;
     }
 }

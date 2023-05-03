@@ -6,14 +6,13 @@ using Entropedia;
 public class MenuController : MonoBehaviour
 {
     public Toggle constToggle, eclipticToggle, defaultvrToggle, realtimeToggle, arModeToggle, showTerrainToggle, constelPictureToggle, constelAnimToggle;
-    public Button changeTimeBtn;
-    public GameObject ui, vrBtn, StarNames, ConstLines, StarColliders, PS, eliptic, changeTimeUi, terrain;
+    public Button changeTimeBtn, timeChangeApplyBtn;
+    public GameObject ui, vrBtn, StarNames, ConstLines, StarColliders, eliptic, changeTimeUi, terrain, hamburger;
     public TouchRotationControl trc;
     private bool isUiOpen = false, isTimeChangeUiOpen = false;
     public Sun sun;
     public StarCalc starCalc;
-    public GameObject hamburger;
-
+    public Text day,month,year,hour,minute,second;
     void Start()
     {
         if (PlayerPrefs.GetString("defaultMode", "true") == "true")
@@ -92,6 +91,32 @@ public class MenuController : MonoBehaviour
         {
             toggleChangeTimeUIVis();
         });
+        timeChangeApplyBtn.onClick.AddListener(delegate{
+            applyTimeChange();
+        });
+    }
+    void applyTimeChange()
+    {
+        DateTime d = new DateTime(int.Parse(year.text),int.Parse(month.text),int.Parse(day.text),int.Parse(hour.text),int.Parse(minute.text),int.Parse(second.text));
+        starCalc.SetDate(d);
+        for(int i=0;i<StarColliders.transform.childCount;i++)
+        {
+            GameObject.Destroy(StarColliders.transform.GetChild(i).gameObject);
+        }
+        for(int i=0;i<StarNames.transform.childCount;i++)
+        {
+            GameObject.Destroy(StarNames.transform.GetChild(i).gameObject);
+        }
+        for(int i=0;i<ConstLines.transform.childCount;i++)
+        {
+            GameObject.Destroy(ConstLines.transform.GetChild(i).gameObject);
+        }
+        StartCoroutine(starCalc.plotStar());
+        if(realtimeToggle.isOn)
+        {
+            sun.SetDate(d);
+            sun.SetPosition();
+        }
     }
     void toggleEclipticCircle()
     {
