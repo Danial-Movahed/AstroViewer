@@ -28,9 +28,15 @@ public class MenuController : MonoBehaviour
         else
             eclipticToggle.isOn = false;
         if (PlayerPrefs.GetString("arEnabled", "true") == "true")
+        {
+            arModeToggle.isOn = true;
             trc.isAREnabled = true;
+        }
         else
+        {
+            arModeToggle.isOn = false;
             trc.isAREnabled = false;
+        }
         if (PlayerPrefs.GetString("realtimeToggle", "true") == "true")
         {
             realtimeToggle.isOn = true;
