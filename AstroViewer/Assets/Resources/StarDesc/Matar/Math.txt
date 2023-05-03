@@ -1,3 +1,4 @@
 Constellation: Pegasus
 Magnitude: 3.08
-Ra/Dec 22h 44m04.2s   +30°20'17.2"
+Distance: 214.30 ly
+Ra/Dec: 22h 44m 03.1s   +30° 20' 26.7"

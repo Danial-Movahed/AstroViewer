@@ -1,4 +1,4 @@
 Constellation: Ursa Major
 Magnitude: 1.75
 Distance: 82.55ly
-Ra/Dec: 12h 55m 04.4s   +55(Deg) 49' 50.5"
+Ra/Dec: 12h 55m 04.4s   +55° 49' 50.5"

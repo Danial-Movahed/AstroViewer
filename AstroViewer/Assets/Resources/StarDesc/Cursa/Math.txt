@@ -1,4 +1,4 @@
 Constellation: Eridanus
 Magnitude: 2.81
-Distance: 89.36ly
-Ra/Dec: 05h 08m 59.4s   -05(Deg) 03' 30.8"
+Distance: 89.36 ly
+Ra/Dec: 05h 08m 59.4s   -05° 03' 30.8"

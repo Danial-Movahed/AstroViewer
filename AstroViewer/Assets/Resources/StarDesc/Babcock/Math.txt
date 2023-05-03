@@ -1,4 +1,4 @@
-Constellation: ?
+Constellation: scorpius
 Magnitude: 8.81
 Distance: 1605.10ly
-Ra/Dec: 22h 45m02.1s   +55°42'19.9"
+Ra/Dec: 22h 45m 02.1s   +55° 42' 19.9"

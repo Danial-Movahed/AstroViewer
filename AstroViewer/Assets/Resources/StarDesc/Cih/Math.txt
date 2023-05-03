@@ -1,4 +1,4 @@
 Constellation: Cassiopeia
 Magniture: 2.13
-Distance: 549.09
+Distance: 549.09 ly
 Ra/Dec: 00h 58m 04.2s +60° 50' 19.6"

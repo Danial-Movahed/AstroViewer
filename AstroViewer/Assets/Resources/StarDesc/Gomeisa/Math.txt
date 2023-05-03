@@ -1,4 +1,4 @@
 Constellation: Canis Minor
 Magnitude: 2.84
-Distance: 161.71ly
-Ra/Dec: 07h 28m 24.8s   +08(Deg) 14' 30.8"
+Distance: 161.71 ly
+Ra/Dec: 07h 28m 24.8s   +08° 14' 30.8"

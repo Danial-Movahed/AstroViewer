@@ -1,4 +1,4 @@
 Constellation: Gemini
 Magnitude: 1.29
 Distance: 33.79 ly
-Ra/Dec: 07h 46m44.4s   +27°58'13.5"
+Ra/Dec: 07h 46m 44.4s   +27° 58' 13.5"

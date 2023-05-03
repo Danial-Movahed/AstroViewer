@@ -1,4 +1,4 @@
 Constellation: Sagittarius
 Magnitude: 1.80
-Distance: 143.30ly
-Ra/Dec: 18h 25m 40.7s   -34(Deg) 22' 22.2"
+Distance: 143.30 ly
+Ra/Dec: 18h 25m 40.7s   -34° 22' 22.2"

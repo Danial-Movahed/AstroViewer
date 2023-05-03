@@ -1,4 +1,4 @@
 Constellation: Ursae Minor
 Magnitude: 2.20
-Distance: 130.93ly
-Ra/Dec: 14h 50m 41.8s   +74(Deg) 03' 16.3"
+Distance: 130.93 ly
+Ra/Dec: 14h 50m 41.8s   +74° 03' 16.3"

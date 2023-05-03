@@ -1,4 +1,4 @@
 Constellation: Cygnus
 Magnitude: 1.29
 Distance: 1411.95 ly
-Ra/Dec: 20h 42m10.9s   +45°21'31.0"
+Ra/Dec: 20h 42m 10.9s   +45° 21' 31.0"

@@ -1,4 +1,4 @@
 Constellation: Aquaius
 Magnitude: 3.03
-Distance: 537.33ly
-Ra/Dec: 21h 32m 44.5s   -05(Deg) 28' 20.1"
+Distance: 537.33 ly
+Ra/Dec: 21h 32m 44.5s   -05° 28' 20.1"

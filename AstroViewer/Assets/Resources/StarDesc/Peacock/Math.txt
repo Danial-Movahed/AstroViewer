@@ -1,4 +1,4 @@
 Constellation: Pavo
 Magnitude: 1.85
-Distance: 178.81ly
-Ra/Dec: 20h 27m 24.9s   -56(Deg) 39' 39.1"
+Distance: 178.81 ly
+Ra/Dec: 20h 27m 24.9s   -56° 39' 39.1"

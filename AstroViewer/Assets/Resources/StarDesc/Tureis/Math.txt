@@ -1,4 +1,4 @@
 Constellation: Puppis
 Magnitude: 2.91
-Distance: 63.54ly
-Ra/Dec: 08h 08m 32.5s   -24(Deg) 22' 18.6"
+Distance: 63.54 ly
+Ra/Dec: 08h 08m 32.5s   -24° 22' 18.6"

@@ -1,4 +1,4 @@
 Constellation: Eclipsing Binary
 Magnitude: 3.55
-Distance: 962.13ly
-Ra/Dec: 18h 50m56.6s   +33°23'04.1"
+Distance: 962.13 ly
+Ra/Dec: 18h 50m 56.6s   +33° 23' 04.1"

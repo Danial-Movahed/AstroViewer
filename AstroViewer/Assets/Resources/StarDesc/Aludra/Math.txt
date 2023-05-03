@@ -1,4 +1,4 @@
 Constellation: Canis Major
 Magnitude: 2.41
-Distance: ly
-Ra/Dec: 07h 25m 01.4s   -29(Deg) 21' 00.6"
+Distance: -
+Ra/Dec: 07h 25m 01.4s   -29° 21' 00.6"

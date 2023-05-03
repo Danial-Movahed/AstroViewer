@@ -1,4 +1,4 @@
 Constellation: Corvus
 Magnitude: 2.80
-Distance: 145.67ly
-Ra/Dec: 12h 35m 36.4s   -23(Deg) 31' 24.1"
+Distance: 145.67 ly
+Ra/Dec: 12h 35m 36.4s   -23° 31' 24.1"

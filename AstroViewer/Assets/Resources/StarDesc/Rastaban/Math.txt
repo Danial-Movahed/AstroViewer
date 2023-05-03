@@ -1,4 +1,4 @@
 Constellation: Draco
 Magnitude: 2.94
-Distance: 380.14ly
-Ra/Dec: 17h 30m 55.8s   +52(Deg) 16' 43.0"
+Distance: 380.14 ly
+Ra/Dec: 17h 30m 55.8s   +52° 16' 43.0"

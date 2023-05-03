@@ -1,4 +1,4 @@
 Constellation: piscis Austrinus
 Magnitude: 1.18
 Distance: 25.13  ly
-Ra/Dec: 22h 58m53.7s   -29°30'10.2"
+Ra/Dec: 22h 58m 53.7s   -29° 30' 10.2"

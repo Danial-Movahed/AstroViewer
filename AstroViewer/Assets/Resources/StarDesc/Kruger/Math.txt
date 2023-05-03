@@ -1,4 +1,4 @@
-Constellation: ?
+Constellation: -
 Magnitude: 9.59
-Distance: 13.05ly
-Ra/Dec: 22h 28m47.1s   +57°48'20.2"
+Distance: 13.05 ly
+Ra/Dec: 22h 28m 47.1s   +57° 48' 20.2"

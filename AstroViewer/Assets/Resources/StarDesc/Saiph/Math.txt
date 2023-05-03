@@ -1,4 +1,4 @@
 Constellation: Orion
 Magnitude: 2.00
-Distance: 647.14ly
-Ra/Dec: 05h 48m 51.5s   -09(Deg) 39' 49.1"
+Distance: 647.14 ly
+Ra/Dec: 05h 48m 51.5s   -09° 39' 49.1"

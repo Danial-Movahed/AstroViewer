@@ -1,4 +1,4 @@
 Constellation: Canes Venatici
 Magnitude: 2.84
 Distance: 114.80ly
-Ra/Dec: 12h 57m 07.0s   +38(Deg) 11' 24.6"
+Ra/Dec: 12h 57m 07.0s   +38° 11' 24.6"

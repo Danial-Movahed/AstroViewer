@@ -1,4 +1,4 @@
 Constellation: EriCorvusdanus
 Magnitude: 2.94
 Distance: 86.86ly
-Ra/Dec: 12h 31m 03.9s   -16(Deg) 38' 36.4"
+Ra/Dec: 12h 31m 03.9s   -16° 38' 36.4"
