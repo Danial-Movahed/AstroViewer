@@ -1,3 +1,3 @@
 Constellation: Bootes
 Magnitude: 4.19
-Ra/Dec 17h 41m50.7s   -32°15'55.1"
+Ra/Dec: 17h 41m 50.7s  -32° 15' 55.1"
