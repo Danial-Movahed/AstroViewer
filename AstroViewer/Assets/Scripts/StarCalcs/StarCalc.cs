@@ -29,7 +29,7 @@ public class StarCalc : MonoBehaviour
         public int hipID;
         public string color;
     }
-    public static int maxStars = 10109;
+    public static int maxStars = 10106;
     // public static int maxStars = 1;
     public star[] stardb = new star[118066];
     public string[] constellations = new string[86];
