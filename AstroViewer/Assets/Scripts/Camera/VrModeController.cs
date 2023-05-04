@@ -35,7 +35,7 @@ public class VrModeController : MonoBehaviour
     public GameObject compassImage;
     public GameObject menuBtn;
     public GameObject vrbtn;
-    public GameObject ui,timeChangeUi;
+    public GameObject ui, timeChangeUi;
 
     // Main camera from the scene.
     private Camera _mainCamera;
@@ -85,9 +85,10 @@ public class VrModeController : MonoBehaviour
         {
             Api.ScanDeviceParams();
         }
-        if(PlayerPrefs.GetString("defaultMode","true") == "false")
+        if (PlayerPrefs.GetString("defaultMode", "true") == "false")
             ExitVR();
-        vrbtn.GetComponent<Button>().onClick.AddListener(delegate {
+        vrbtn.GetComponent<Button>().onClick.AddListener(delegate
+        {
             EnterVR();
         });
         // XRDevice.fovZoomFactor=4f;
@@ -98,7 +99,7 @@ public class VrModeController : MonoBehaviour
     /// </summary>
     public void Update()
     {
-        if(!Application.isEditor)
+        if (!Application.isEditor)
         {
             if (_isVrModeEnabled)
             {
@@ -123,7 +124,10 @@ public class VrModeController : MonoBehaviour
     private void EnterVR()
     {
         ui.SetActive(false);
-        timeChangeUi.SetActive(false);   
+        timeChangeUi.SetActive(false);
+        compassImage.SetActive(false);
+        menuBtn.SetActive(false);
+        vrbtn.SetActive(false);
         StartCoroutine(StartXR());
         if (Api.HasNewDeviceParams())
         {
@@ -138,6 +142,9 @@ public class VrModeController : MonoBehaviour
     {
         ui.SetActive(true);
         timeChangeUi.SetActive(true);
+        compassImage.SetActive(true);
+        menuBtn.SetActive(true);
+        vrbtn.SetActive(true);
         StopXR();
     }
 
@@ -165,9 +172,6 @@ public class VrModeController : MonoBehaviour
             Debug.Log("Starting XR...");
             XRGeneralSettings.Instance.Manager.StartSubsystems();
             Debug.Log("XR started.");
-            compassImage.SetActive(false);
-            menuBtn.SetActive(false);
-            vrbtn.SetActive(false);
         }
     }
 
@@ -187,8 +191,5 @@ public class VrModeController : MonoBehaviour
 
         _mainCamera.ResetAspect();
         _mainCamera.fieldOfView = _defaultFieldOfView;
-        compassImage.SetActive(true);
-        menuBtn.SetActive(true);
-        vrbtn.SetActive(true);
     }
 }

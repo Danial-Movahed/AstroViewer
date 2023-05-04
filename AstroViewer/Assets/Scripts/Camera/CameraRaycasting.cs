@@ -61,6 +61,7 @@ public class CameraRaycasting : MonoBehaviour
             try
             {
                 rayCol = results[0].gameObject.name;
+                Debug.Log(rayCol);
             }
             catch
             {
