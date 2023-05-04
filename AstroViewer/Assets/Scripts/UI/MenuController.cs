@@ -40,7 +40,7 @@ public class MenuController : MonoBehaviour
         if (PlayerPrefs.GetString("realtimeToggle", "true") == "true")
         {
             realtimeToggle.isOn = true;
-            sun.SetDate(starCalc.time);
+            sun.SetDate(DateTime.Now);
             sun.SetPosition();
         }
         else

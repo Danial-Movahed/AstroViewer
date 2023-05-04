@@ -215,9 +215,9 @@ public class StarCalc : MonoBehaviour
         cubeController.transform.rotation = Quaternion.Euler(new Vector3(-2, -90, 0));
         nameText = Instantiate(Resources.Load("StarText"), cube.transform.position, Quaternion.LookRotation(cube.transform.position - cam.transform.position)) as GameObject;
         nameText.transform.SetParent(StarNames.transform);
-        nameText.GetComponent<TextMeshPro>().text = "E";
+        nameText.GetComponent<TextMeshPro>().text = "W";
         nameText.GetComponent<TextMeshPro>().fontSize += 2;
-        nameText.name = "Name East";
+        nameText.name = "Name West";
         // South
         cubeController.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
         points[maxStars + 1].position = cube.transform.position;
@@ -227,9 +227,9 @@ public class StarCalc : MonoBehaviour
         cubeController.transform.rotation = Quaternion.Euler(new Vector3(-2, 90, 0));
         nameText = Instantiate(Resources.Load("StarText"), cube.transform.position, Quaternion.LookRotation(cube.transform.position - cam.transform.position)) as GameObject;
         nameText.transform.SetParent(StarNames.transform);
-        nameText.GetComponent<TextMeshPro>().text = "W";
+        nameText.GetComponent<TextMeshPro>().text = "E";
         nameText.GetComponent<TextMeshPro>().fontSize += 2;
-        nameText.name = "Name West";
+        nameText.name = "Name East";
         // East
         cubeController.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         points[maxStars + 2].position = cube.transform.position;
@@ -239,9 +239,9 @@ public class StarCalc : MonoBehaviour
         cubeController.transform.rotation = Quaternion.Euler(new Vector3(-2, 0, 0));
         nameText = Instantiate(Resources.Load("StarText"), cube.transform.position, Quaternion.LookRotation(cube.transform.position - cam.transform.position)) as GameObject;
         nameText.transform.SetParent(StarNames.transform);
-        nameText.GetComponent<TextMeshPro>().text = "S";
+        nameText.GetComponent<TextMeshPro>().text = "N";
         nameText.GetComponent<TextMeshPro>().fontSize += 2;
-        nameText.name = "Name South";
+        nameText.name = "Name North";
         // West
         cubeController.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
         points[maxStars + 3].position = cube.transform.position;
@@ -251,9 +251,9 @@ public class StarCalc : MonoBehaviour
         cubeController.transform.rotation = Quaternion.Euler(new Vector3(-2, 180, 0));
         nameText = Instantiate(Resources.Load("StarText"), cube.transform.position, Quaternion.LookRotation(cube.transform.position - cam.transform.position)) as GameObject;
         nameText.transform.SetParent(StarNames.transform);
-        nameText.GetComponent<TextMeshPro>().text = "N";
+        nameText.GetComponent<TextMeshPro>().text = "S";
         nameText.GetComponent<TextMeshPro>().fontSize += 2;
-        nameText.name = "Name North";
+        nameText.name = "Name South";
         // #############################
         PS.SetParticles(points, points.Length);
         if (PlayerPrefs.GetString("eclipticToggle", "true") == "true")
