@@ -40,11 +40,14 @@ public class MenuController : MonoBehaviour
         if (PlayerPrefs.GetString("realtimeToggle", "true") == "true")
         {
             realtimeToggle.isOn = true;
-            sun.SetDate(new DateTime(2023, 1, 1, 0, 0, 1));
+            sun.SetDate(starCalc.time);
             sun.SetPosition();
         }
         else
+        {
             realtimeToggle.isOn = false;
+            sun.SetDate(new DateTime(2023, 1, 1, 0, 0, 1));
+        }
         if (PlayerPrefs.GetString("showTerrainToggle", "true") == "true")
             showTerrainToggle.isOn = true;
         else
