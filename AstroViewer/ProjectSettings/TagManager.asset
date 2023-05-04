@@ -7,6 +7,7 @@ TagManager:
   - Constellations
   - ConstelName
   - ConstelLine
+  - CloseBG
   layers:
   - Default
   - TransparentFX
